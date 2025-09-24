@@ -41,7 +41,7 @@
         .header {
             background: var(--gradient-primary);
             color: white;
-            padding: 2rem 0;
+            padding: 1rem 0;
             text-align: center;
             position: sticky;
             top: 0;
@@ -50,13 +50,13 @@
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
         }
 
         .header .subtitle {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             opacity: 0.9;
             font-weight: 300;
         }
@@ -83,8 +83,8 @@
             box-shadow: var(--shadow);
             height: fit-content;
             position: sticky;
-            top: 120px;
-            max-height: calc(100vh - 140px);
+            top: 80px;
+            max-height: calc(100vh - 100px);
             overflow-y: auto;
         }
 
@@ -144,7 +144,7 @@
         .section {
             padding: 2rem;
             border-bottom: 1px solid var(--border-color);
-            scroll-margin-top: 140px;
+            scroll-margin-top: 90px;
         }
 
         .section:last-child {
@@ -579,6 +579,28 @@
         .print-only {
             display: none;
         }
+        
+        .back-to-home {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+        }
+        
+        .back-to-home:hover {
+            opacity: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 
         @media print {
             .sidebar, .download-btn {
@@ -606,6 +628,12 @@
 <body>
     <header class="header">
         <div class="container">
+            <a href="index.html" class="back-to-home">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7h-2z"/>
+                </svg>
+                Back to Home
+            </a>
             <h1>Clinical Nutrition Report</h1>
             <p class="subtitle">Comprehensive Dietary Strategy for Senior Canine with Multi-Organ Stress</p>
         </div>
@@ -1251,7 +1279,7 @@
 
             // Intersection Observer for active nav highlighting
             const observerOptions = {
-                rootMargin: '-140px 0px -70% 0px'
+                rootMargin: '-90px 0px -70% 0px'
             };
 
             const observer = new IntersectionObserver(entries => {
