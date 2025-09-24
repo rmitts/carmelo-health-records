@@ -4,10 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carmelo's Health Records</title>
-    <meta http-equiv="refresh" content="0; url=clinical-nutrition-report.html">
-    <link rel="canonical" href="clinical-nutrition-report.html">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .report-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .report-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fafafa;
+            transition: box-shadow 0.3s ease;
+        }
+        .report-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .report-card a {
+            text-decoration: none;
+            color: #2c5aa0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .report-card a:hover {
+            color: #1e3d6f;
+        }
+        .report-description {
+            color: #666;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-    <p>If you are not redirected automatically, <a href="clinical-nutrition-report.html">click here to view Carmelo's Clinical Nutrition Report</a>.</p>
+    <div class="container">
+        <h1>Carmelo's Health Records</h1>
+        <div class="report-links">
+            <div class="report-card">
+                <a href="clinical-nutrition-report.html">Clinical Nutrition Report</a>
+                <p class="report-description">Comprehensive nutritional analysis and dietary recommendations</p>
+            </div>
+            <div class="report-card">
+                <a href="melo-claude-report.html">Melo Claude Report</a>
+                <p class="report-description">AI-generated health insights and analysis</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
