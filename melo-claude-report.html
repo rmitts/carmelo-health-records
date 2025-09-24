@@ -34,6 +34,10 @@
             background-color: var(--light-color);
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         .header {
             background: var(--gradient-primary);
             color: white;
@@ -140,6 +144,7 @@
         .section {
             padding: 2rem;
             border-bottom: 1px solid var(--border-color);
+            scroll-margin-top: 140px;
         }
 
         .section:last-child {
@@ -1223,9 +1228,18 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
+                        // Get header height for offset calculation
+                        const header = document.querySelector('.header');
+                        const headerHeight = header ? header.offsetHeight : 0;
+                        const additionalOffset = 20; // Extra padding
+                        
+                        // Calculate scroll position with offset
+                        const elementPosition = targetElement.offsetTop;
+                        const offsetPosition = elementPosition - headerHeight - additionalOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
                         });
                     }
 
@@ -1237,7 +1251,7 @@
 
             // Intersection Observer for active nav highlighting
             const observerOptions = {
-                rootMargin: '-20% 0px -70% 0px'
+                rootMargin: '-140px 0px -70% 0px'
             };
 
             const observer = new IntersectionObserver(entries => {
