@@ -65,6 +65,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
+            position: relative;
         }
 
         .main-content {
@@ -582,7 +583,7 @@
         
         .back-to-home {
             position: absolute;
-            left: 1rem;
+            left: 0;
             top: 50%;
             transform: translateY(-50%);
             color: white;
@@ -595,6 +596,7 @@
             transition: opacity 0.2s;
             padding: 0.5rem;
             border-radius: 0.375rem;
+            z-index: 10;
         }
         
         .back-to-home:hover {
