@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Overview - Carmelo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1f2937;
+            --light-color: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-primary: #1f2937;
+            --text-secondary: #64748b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--light-color);
+        }
+
+        .metric-card {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-elevated {
+            background-color: #fef3c7;
+            color: #92400e;
+            border: 1px solid #f59e0b;
+        }
+
+        .status-severe {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+
+        .critical-alert {
+            border-left: 4px solid var(--danger-color);
+            background: linear-gradient(120deg, #fef2f2 0%, #fee2e2 100%);
+        }
+
+        .monitoring-item {
+            border-left: 3px solid var(--primary-color);
+            transition: border-color 0.2s ease;
+        }
+
+        .monitoring-item:hover {
+            border-left-color: var(--accent-color);
+        }
+
+        .back-to-home {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            z-index: 10;
+        }
+        
+        .back-to-home:hover {
+            opacity: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .print-btn {
+            background-color: #e5e7eb;
+            color: #374151;
+            border: 1px solid #d1d5db;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .print-btn:hover {
+            background-color: #d1d5db;
+        }
+
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.25rem;
+            }
+
+            .back-to-home {
+                position: static;
+                transform: none;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="back-to-home">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7h-2z"/>
+                </svg>
+                Back to Home
+            </a>
+            <h1>Health Overview</h1>
+            <p class="subtitle">Critical metrics and action items for Carmelo</p>
+        </div>
+    </header>
+
+    <main class="py-8">
+        <div class="container">
+            <!-- Header with Print Button -->
+            <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
+                <div class="bg-blue-50 px-4 py-2 rounded-lg">
+                    <span class="text-sm font-semibold text-blue-700">🐕 Carmelo</span>
+                    <span class="text-sm text-blue-600 ml-2">Norwegian Elkhound Mix • 15 years • 55 lbs</span>
+                </div>
+                <button class="print-btn" onclick="window.print()">
+                    <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2z"/>
+                    </svg>
+                    Print Report
+                </button>
+            </div>
+
+            <!-- Critical Metrics Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Kidney Function Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-orange-500 metric-card">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">🫘 Kidney Function</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-600">BUN:</span>
+                            <div class="text-right">
+                                <span class="font-semibold text-gray-800">43 mg/dL</span>
+                                <span class="status-badge status-elevated ml-2">Elevated</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-600">Creatinine:</span>
+                            <div class="text-right">
+                                <span class="font-semibold text-gray-800">2.12 mg/dL</span>
+                                <span class="status-badge status-elevated ml-2">Elevated</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-3 italic">Reference: BUN 7-30, Creatinine 0.6-1.6 mg/dL</p>
+                </div>
+
+                <!-- Liver Function Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500 metric-card">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">🫀 Liver Function</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-600">ALT:</span>
+                            <div class="text-right">
+                                <span class="font-semibold text-gray-800">308 IU/L</span>
+                                <span class="status-badge status-severe ml-2">Severe</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-600">ALP:</span>
+                            <div class="text-right">
+                                <span class="font-semibold text-gray-800">495 IU/L</span>
+                                <span class="status-badge status-severe ml-2">Severe</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-3 italic">Reference: ALT 10-90, ALP 15-140 IU/L</p>
+                </div>
+
+                <!-- Other Concerns Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500 metric-card">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">⚠️ Other Concerns</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-600">Calcium:</span>
+                            <div class="text-right">
+                                <span class="font-semibold text-gray-800">13.3 mg/dL</span>
+                                <span class="status-badge status-elevated ml-2">Elevated</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-600">Cholesterol:</span>
+                            <div class="text-right">
+                                <span class="font-semibold text-gray-800">461 mg/dL</span>
+                                <span class="status-badge status-elevated ml-2">Elevated</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-3 italic">Reference: Calcium 9.0-11.5, Cholesterol 130-300 mg/dL</p>
+                </div>
+            </div>
+
+            <!-- Critical Action Items -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8 critical-alert">
+                <h4 class="flex items-center text-lg font-semibold text-red-700 mb-4">
+                    🚨 Critical Action Items
+                </h4>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-3 mt-1">•</span>
+                        <span class="text-gray-700">Switch to therapeutic kidney/liver diet immediately</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-3 mt-1">•</span>
+                        <span class="text-gray-700">Monitor water intake and urination patterns daily</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-3 mt-1">•</span>
+                        <span class="text-gray-700">Schedule follow-up bloodwork in 3 months</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-3 mt-1">•</span>
+                        <span class="text-gray-700">Restrict phosphorus and fat in diet</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Monitoring Schedule -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-6">📅 Monitoring Schedule</h3>
+                <div class="space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-lg monitoring-item">
+                        <div class="flex justify-between items-start flex-wrap gap-2">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                                Every 3-6 months
+                            </span>
+                            <span class="text-sm font-medium text-gray-700">
+                                Kidney Function (BUN, Creatinine, Phosphorus)
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg monitoring-item">
+                        <div class="flex justify-between items-start flex-wrap gap-2">
+                            <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                                Every 3-6 months
+                            </span>
+                            <span class="text-sm font-medium text-gray-700">
+                                Liver Enzymes (ALT, ALP, GGT)
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-4 rounded-lg monitoring-item">
+                        <div class="flex justify-between items-start flex-wrap gap-2">
+                            <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                                Monthly
+                            </span>
+                            <span class="text-sm font-medium text-gray-700">
+                                Weight Check
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-4 rounded-lg monitoring-item">
+                        <div class="flex justify-between items-start flex-wrap gap-2">
+                            <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                                As needed
+                            </span>
+                            <span class="text-sm font-medium text-gray-700">
+                                Blood Pressure
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="mt-8 bg-gray-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">📋 Related Reports</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="melo-claude-report.html" class="flex items-center p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+                        <div class="bg-purple-100 p-2 rounded-lg mr-3">
+                            <svg class="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Detailed Clinical Analysis</h4>
+                            <p class="text-sm text-gray-600">Comprehensive nutrition report</p>
+                        </div>
+                    </a>
+                    
+                    <a href="clinical-nutrition-report.html" class="flex items-center p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+                        <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 00-1 1v6a1 1 0 001 1v1a2 2 0 01-2-2V5zM15 5a2 2 0 00-2-2v1a1 1 0 011 1v6a1 1 0 01-1 1v1a2 2 0 002-2V5z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Blood Chemistry Panel</h4>
+                            <p class="text-sm text-gray-600">September 11, 2025 results</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Print functionality
+        window.addEventListener('beforeprint', function() {
+            // Hide interactive elements when printing
+            document.querySelectorAll('.print-btn').forEach(btn => btn.style.display = 'none');
+        });
+
+        window.addEventListener('afterprint', function() {
+            // Show interactive elements after printing
+            document.querySelectorAll('.print-btn').forEach(btn => btn.style.display = 'inline-flex');
+        });
+
+        // Add smooth hover animations
+        document.querySelectorAll('.metric-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 8px 25px -5px rgba(0, 0, 0, 0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            });
+        });
+    </script>
+</body>
+</html>

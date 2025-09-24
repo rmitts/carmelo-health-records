@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carmelo's Health Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="container">
+                <h1>🐕 Carmelo's Health Dashboard</h1>
+                <div class="dog-info">
+                    <span class="dog-breed">Norwegian Elkhound Mix</span>
+                    <span class="dog-age">Senior (15+ years)</span>
+                    <span class="dog-weight">55 lbs</span>
+                </div>
+            </div>
+        </header>
+
+        <nav class="tab-navigation">
+            <div class="container">
+                <button class="tab-btn active" data-tab="overview">Overview</button>
+                <button class="tab-btn" data-tab="bloodwork">Bloodwork Results</button>
+                <button class="tab-btn" data-tab="dietary">Dietary Guidelines</button>
+                <button class="tab-btn" data-tab="current-foods">Current Foods</button>
+                <button class="tab-btn" data-tab="gemini-report">Gemini Report</button>
+                <button class="tab-btn" data-tab="research1">Research 1</button>
+                <button class="tab-btn" data-tab="research2">Research 2</button>
+                <button class="tab-btn" data-tab="research3">Research 3</button>
+                <button class="tab-btn" data-tab="veterinary">Veterinary</button>
+            </div>
+        </nav>
+
+        <main class="dashboard-content">
+            <div class="container">
+                <!-- Overview Tab -->
+                <div class="tab-content active" id="overview">
+                    <div class="tab-header">
+                        <h2>Health Overview</h2>
+                        <button class="btn btn--secondary print-btn" onclick="window.print()">Print</button>
+                    </div>
+                    
+                    <div class="metrics-grid">
+                        <div class="metric-card critical">
+                            <h3>Kidney Function</h3>
+                            <div class="metric-values">
+                                <div class="metric-item">
+                                    <span class="label">BUN:</span>
+                                    <span class="value">43 mg/dL</span>
+                                    <span class="status-badge elevated">Elevated</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="label">Creatinine:</span>
+                                    <span class="value">2.12 mg/dL</span>
+                                    <span class="status-badge elevated">Elevated</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card critical">
+                            <h3>Liver Function</h3>
+                            <div class="metric-values">
+                                <div class="metric-item">
+                                    <span class="label">ALT:</span>
+                                    <span class="value">308 IU/L</span>
+                                    <span class="status-badge severe">Severely Elevated</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="label">ALP:</span>
+                                    <span class="value">495 IU/L</span>
+                                    <span class="status-badge severe">Severely Elevated</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card warning">
+                            <h3>Other Concerns</h3>
+                            <div class="metric-values">
+                                <div class="metric-item">
+                                    <span class="label">Calcium:</span>
+                                    <span class="value">13.3 mg/dL</span>
+                                    <span class="status-badge elevated">Elevated</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="label">Cholesterol:</span>
+                                    <span class="value">461 mg/dL</span>
+                                    <span class="status-badge elevated">Elevated</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert-section">
+                        <div class="alert alert-critical">
+                            <h4>🚨 Critical Action Items</h4>
+                            <ul>
+                                <li>Switch to therapeutic kidney/liver diet immediately</li>
+                                <li>Monitor water intake and urination patterns daily</li>
+                                <li>Schedule follow-up bloodwork in 3 months</li>
+                                <li>Restrict phosphorus and fat in diet</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="progress-section">
+                        <h3>Monitoring Schedule</h3>
+                        <div class="monitoring-grid">
+                            <div class="monitoring-item">
+                                <span class="frequency">Every 3-6 months</span>
+                                <span class="test">Kidney Function (BUN, Creatinine, Phosphorus)</span>
+                            </div>
+                            <div class="monitoring-item">
+                                <span class="frequency">Every 3-6 months</span>
+                                <span class="test">Liver Enzymes (ALT, ALP, GGT)</span>
+                            </div>
+                            <div class="monitoring-item">
+                                <span class="frequency">Monthly</span>
+                                <span class="test">Weight Check</span>
+                            </div>
+                            <div class="monitoring-item">
+                                <span class="frequency">As needed</span>
+                                <span class="test">Blood Pressure</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloodwork Results Tab -->
+                <div class="tab-content" id="bloodwork">
+                    <div class="tab-header">
+                        <h2>Bloodwork Results - September 10, 2025</h2>
+                        <button class="btn btn--secondary print-btn" onclick="window.print()">Print</button>
+                    </div>
+
+                    <div class="bloodwork-table-container">
+                        <table class="bloodwork-table">
+                            <thead>
+                                <tr>
+                                    <th>Test</th>
+                                    <th>Result</th>
+                                    <th>Reference Range</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bloodwork-results"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Dietary Recommendations Tab -->
+                <div class="tab-content" id="dietary">
+                    <div class="tab-header">
+                        <h2>Dietary Recommendations</h2>
+                        <button class="btn btn--secondary print-btn" onclick="window.print()">Print</button>
+                    </div>
+
+                    <div class="dietary-grid">
+                        <div class="dietary-section">
+                            <h3>🥩 Protein Management</h3>
+                            <div class="recommendation-box">
+                                <p><strong>Target:</strong> 35g protein/1000 kcal</p>
+                                <p><strong>Quality:</strong> High-quality, easily digestible</p>
+                                <p><strong>Best Sources:</strong> Chicken, Turkey, Fish</p>
+                            </div>
+                        </div>
+
+                        <div class="dietary-section">
+                            <h3>🦴 Phosphorus Restriction</h3>
+                            <div class="recommendation-box critical-restriction">
+                                <p><strong>Target:</strong> 0.4-1.2g/1000 kcal</p>
+                                <p><strong>Critical for:</strong> Kidney function</p>
+                                <p><strong>Avoid:</strong> Organ meats, Dairy products, Fish with bones</p>
+                            </div>
+                        </div>
+
+                        <div class="dietary-section">
+                            <h3>🧈 Fat Restriction</h3>
+                            <div class="recommendation-box critical-restriction">
+                                <p><strong>Target:</strong> 10-15% dry matter maximum</p>
+                                <p><strong>Reason:</strong> Post-gallbladder surgery and liver stress</p>
+                                <p><strong>Avoid:</strong> High-fat meats, Pork, Lamb, Fatty beef cuts</p>
+                            </div>
+                        </div>
+
+                        <div class="dietary-section">
+                            <h3>🧂 Sodium Control</h3>
+                            <div class="recommendation-box">
+                                <p><strong>Target:</strong> Controlled levels in therapeutic diets</p>
+                                <p><strong>Avoid:</strong> Processed foods, Treats, Table scraps</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="supplements-section">
+                        <h3>💊 Beneficial Supplements</h3>
+                        <div class="supplements-grid">
+                            <div class="supplement-card">
+                                <h4>Omega-3 Fatty Acids</h4>
+                                <p>EPA/DHA for kidney and liver support</p>
+                            </div>
+                            <div class="supplement-card">
+                                <h4>Milk Thistle</h4>
+                                <p>Liver support (with veterinary approval)</p>
+                            </div>
+                            <div class="supplement-card">
+                                <h4>Probiotics</h4>
+                                <p>Digestive health support</p>
+                            </div>
+                            <div class="supplement-card">
+                                <h4>Vitamin B Complex</h4>
+                                <p>Support for kidney function</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="therapeutic-diets">
+                        <h3>🏥 Recommended Therapeutic Diets</h3>
+                        <ul class="diet-list">
+                            <li>Hill's Prescription Diet k/d</li>
+                            <li>Royal Canin Renal Support</li>
+                            <li>Purina Pro Plan Veterinary Diets NF</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Current Foods Analysis Tab -->
+                <div class="tab-content" id="current-foods">
+                    <div class="tab-header">
+                        <h2>Current Foods Analysis</h2>
+                        <button class="btn btn--secondary print-btn" onclick="window.print()">Print</button>
+                    </div>
+
+                    <div class="foods-analysis">
+                        <div class="food-card">
+                            <h3>Dave's Restricted Diet Chicken Recipe (Orange Can)</h3>
+                            <div class="nutrition-grid">
+                                <div class="nutrition-item">
+                                    <span class="label">Protein (min):</span>
+                                    <span class="value">9.0%</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="label">Fat (min):</span>
+                                    <span class="value">6.0%</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="label">Fiber (max):</span>
+                                    <span class="value">1.0%</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="label">Moisture (max):</span>
+                                    <span class="value">77.0%</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="label">Sodium (max):</span>
+                                    <span class="value">0.12%</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="label">Calories/can:</span>
+                                    <span class="value">507 (13.2oz)</span>
+                                </div>
+                            </div>
+                            <div class="suitability-assessment">
+                                <div class="assessment-good">
+                                    <h4>✅ Good For:</h4>
+                                    <p>Sensitive stomach, low sodium content</p>
+                                </div>
+                                <div class="assessment-concerns">
+                                    <h4>⚠️ Concerns:</h4>
+                                    <ul>
+                                        <li>Phosphorus content unknown</li>
+                                        <li>Not a therapeutic formula</li>
+                                        <li>May not meet kidney/liver dietary needs</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="food-card">
+                            <h3>Dave's Bland Diet Chicken & Rice (Blue Can)</h3>
+                            <div class="nutrition-grid">
+                                <div class="nutrition-item">
+                                    <span class="label">Protein (min):</span>
+                                    <span class="value">7.0%</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="label">Fat (min):</span>
+                                    <span class="value">6.0%</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="label">Fiber (max):</span>
+                                    <span class="value">1.5%</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="label">Moisture (max):</span>
+                                    <span class="value">78.0%</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="label">Ash (max):</span>
+                                    <span class="value">2.03%</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="label">Calories/can:</span>
+                                    <span class="value">445 (13.2oz)</span>
+                                </div>
+                            </div>
+                            <div class="suitability-assessment">
+                                <div class="assessment-good">
+                                    <h4>✅ Good For:</h4>
+                                    <p>Sensitive stomach, includes rice for digestion</p>
+                                </div>
+                                <div class="assessment-concerns">
+                                    <h4>⚠️ Concerns:</h4>
+                                    <ul>
+                                        <li>Phosphorus content unknown</li>
+                                        <li>Not a therapeutic formula</li>
+                                        <li>May not meet kidney/liver dietary needs</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recommendation-summary">
+                        <div class="alert alert-warning">
+                            <h4>⚠️ Recommendation</h4>
+                            <p>While these foods are good for sensitive stomach issues, they are not formulated for kidney and liver support. Consider transitioning to a therapeutic diet designed specifically for kidney/liver conditions under veterinary guidance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gemini Report Tab -->
+                <div class="tab-content" id="gemini-report">
+                    <div class="gemini-report-container">
+                        <div class="report-header">
+                            <h2>📋 Comprehensive Clinical Nutrition Report</h2>
+                            <div class="report-controls">
+                                <input type="text" id="report-search" class="form-control search-input" placeholder="Search report...">
+                                <button class="btn btn--secondary" onclick="printReport()">Print Report</button>
+                            </div>
+                        </div>
+
+                        <div class="report-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="reading-progress"></div>
+                            </div>
+                            <span class="progress-text" id="progress-text">0% Complete</span>
+                        </div>
+
+                        <div class="report-layout">
+                            <nav class="report-sidebar">
+                                <h3>Navigation</h3>
+                                <ul class="report-nav">
+                                    <li><a href="#executive-summary" class="nav-link active">Executive Summary</a></li>
+                                    <li><a href="#clinical-data" class="nav-link">Clinical Data Analysis</a></li>
+                                    <li><a href="#renal-principles" class="nav-link">Renal Management Principles</a></li>
+                                    <li><a href="#hepatic-support" class="nav-link">Hepatic Nutritional Support</a></li>
+                                    <li><a href="#co-occurring-conditions" class="nav-link">Co-Occurring Conditions</a></li>
+                                    <li><a href="#synthesized-plan" class="nav-link">Synthesized Nutritional Plan</a></li>
+                                    <li><a href="#dietary-claims" class="nav-link">Dietary Claims Analysis</a></li>
+                                    <li><a href="#nutraceuticals" class="nav-link">Nutraceuticals & Supplements</a></li>
+                                </ul>
+                            </nav>
+
+                            <main class="report-content">
+                                <!-- Executive Summary Section -->
+                                <section id="executive-summary" class="report-section">
+                                    <div class="section-header">
+                                        <h2>Executive Summary: A Unified Dietary Strategy for Carmelo</h2>
+                                        <button class="btn btn--outline btn--sm section-toggle" onclick="toggleSection('executive-summary')">Collapse</button>
+                                    </div>
+                                    <div class="section-content">
+                                        <div class="callout callout-primary">
+                                            <p><strong>Patient Profile:</strong> Carmelo, a 15-year-old, 55 lb mixed-breed canine with concurrent renal stress, hepatic stress, digestive limitations from cholecystectomy and splenectomy, and stable cardiac condition.</p>
+                                        </div>
+
+                                        <p>This report provides a comprehensive, evidence-based analysis and set of dietary recommendations for Carmelo based on his recent blood chemistry panel and established veterinary medical literature. His health profile is characterized by concurrent stress on multiple organ systems requiring a unified dietary approach.</p>
+
+                                        <h3>Core Objectives</h3>
+                                        <ul>
+                                            <li><strong>Reduce Kidney Workload:</strong> Restrict dietary phosphorus, manage high-quality protein intake, control sodium levels, and enhance hydration</li>
+                                            <li><strong>Support Liver Function:</strong> Provide easily digestible nutrients, avoid excess fat and copper, leverage hepatoprotective compounds</li>
+                                            <li><strong>Accommodate Digestive Limitations:</strong> Strict low-fat profile due to gallbladder absence, high digestibility requirements</li>
+                                            <li><strong>Maintain Cardiovascular Stability:</strong> Controlled sodium intake for blood pressure and fluid balance management</li>
+                                            <li><strong>Preserve Lean Body Mass:</strong> Prevent muscle wasting through adequate calories and appropriate protein levels</li>
+                                        </ul>
+
+                                        <div class="callout callout-success">
+                                            <h4>Primary Recommendation</h4>
+                                            <p>Implementation of a veterinary therapeutic renal diet, preferably canned/wet formulation, augmented with evidence-based nutraceuticals including omega-3 fatty acids, probiotics, and hepatoprotectants like SAMe and silymarin.</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Clinical Data Analysis Section -->
+                                <section id="clinical-data" class="report-section">
+                                    <div class="section-header">
+                                        <h2>Analysis of Clinical Data: Interpreting Carmelo's Bloodwork</h2>
+                                        <button class="btn btn--outline btn--sm section-toggle" onclick="toggleSection('clinical-data')">Collapse</button>
+                                    </div>
+                                    <div class="section-content">
+                                        <p>The Canine Diagnostic Panel from September 11, 2025, reveals a pattern of interconnected dysfunction across multiple organ systems, necessitating a comprehensive dietary strategy.</p>
+
+                                        <h3>Summary of Abnormal Blood Chemistry Values</h3>
+                                        <div class="table-container">
+                                            <table class="clinical-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Parameter</th>
+                                                        <th>Result</th>
+                                                        <th>Reference Range</th>
+                                                        <th>Clinical Significance</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="elevated-row">
+                                                        <td><strong>BUN</strong></td>
+                                                        <td>43 H</td>
+                                                        <td>7-30 mg/dL</td>
+                                                        <td>Azotemia - indicates kidneys not filtering waste effectively</td>
+                                                    </tr>
+                                                    <tr class="elevated-row">
+                                                        <td><strong>CREATININE</strong></td>
+                                                        <td>2.12 H</td>
+                                                        <td>0.6-1.6 mg/dL</td>
+                                                        <td>Confirms compromised renal function</td>
+                                                    </tr>
+                                                    <tr class="critical-row">
+                                                        <td><strong>PHOSPHORUS</strong></td>
+                                                        <td>4.2</td>
+                                                        <td>2.5-6.0 mg/dL</td>
+                                                        <td><strong>Deceptively Normal</strong> - Body compensating through elevated PTH, accelerating kidney damage</td>
+                                                    </tr>
+                                                    <tr class="elevated-row">
+                                                        <td><strong>CALCIUM</strong></td>
+                                                        <td>13.3 H</td>
+                                                        <td>9.0-11.5 mg/dL</td>
+                                                        <td>Hypercalcemia linked to chronic kidney disease</td>
+                                                    </tr>
+                                                    <tr class="elevated-row">
+                                                        <td><strong>ALP</strong></td>
+                                                        <td>495 H</td>
+                                                        <td>15-140 IU/L</td>
+                                                        <td>Hepatocellular stress/cholestasis</td>
+                                                    </tr>
+                                                    <tr class="elevated-row">
+                                                        <td><strong>ALT</strong></td>
+                                                        <td>308 H</td>
+                                                        <td>10-90 IU/L</td>
+                                                        <td>Hepatocellular leakage - active liver damage</td>
+                                                    </tr>
+                                                    <tr class="elevated-row">
+                                                        <td><strong>GGT</strong></td>
+                                                        <td>28 H</td>
+                                                        <td>0-9 IU/L</td>
+                                                        <td>Bile duct stress - significant given cholecystectomy</td>
+                                                    </tr>
+                                                    <tr class="elevated-row">
+                                                        <td><strong>CHOLESTEROL</strong></td>
+                                                        <td>461 H</td>
+                                                        <td>130-300 mg/dL</td>
+                                                        <td>Hypercholesterolemia - supports low-fat diet need</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="callout callout-warning">
+                                            <h4>Critical Phosphorus Assessment</h4>
+                                            <p>The "normal" phosphorus level of 4.2 mg/dL is highly concerning in the context of azotemia. The body is maintaining normal blood phosphorus through chronically elevated PTH, which is toxic to remaining kidney tissue and accelerates disease progression. <strong>Immediate dietary phosphorus restriction is paramount.</strong></p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Renal Management Principles Section -->
+                                <section id="renal-principles" class="report-section">
+                                    <div class="section-header">
+                                        <h2>Core Dietary Principles for Managing Renal Stress</h2>
+                                        <button class="btn btn--outline btn--sm section-toggle" onclick="toggleSection('renal-principles')">Collapse</button>
+                                    </div>
+                                    <div class="section-content">
+                                        <p>Nutritional management is the cornerstone of therapy for dogs with chronic kidney disease. Research conclusively shows that dogs with CKD fed appropriate therapeutic diets live longer and experience fewer uremic crises.</p>
+
+                                        <h3>The Paramount Importance of Phosphorus Restriction</h3>
+                                        <div class="callout callout-error">
+                                            <p><strong>Most Critical Intervention:</strong> Phosphorus restriction is the most evidence-based nutritional intervention to slow CKD progression, potentially more impactful than protein restriction.</p>
+                                        </div>
+                                        <ul>
+                                            <li>Standard maintenance diets: ~1.5g/1000 kcal phosphorus</li>
+                                            <li>Therapeutic renal diets: 0.5-0.8g/1000 kcal phosphorus</li>
+                                            <li>Must initiate early, before hyperphosphatemia develops</li>
+                                            <li>Avoid inorganic phosphorus additives (nearly 100% absorbed)</li>
+                                        </ul>
+
+                                        <h3>The Protein Paradox: Quality vs. Quantity</h3>
+                                        <div class="callout callout-info">
+                                            <p>Goal is not "low protein" but <strong>moderated, high-quality, highly digestible protein</strong> to meet essential needs while minimizing uremic toxins.</p>
+                                        </div>
+                                        <ul>
+                                            <li><strong>Rationale:</strong> Reduce uremic toxin accumulation (BUN) while preventing malnutrition</li>
+                                            <li><strong>Senior Requirements:</strong> Higher protein needs than younger adults for muscle maintenance</li>
+                                            <li><strong>Quality Focus:</strong> High biological value proteins (eggs, poultry, dairy) vs. lower quality proteins</li>
+                                            <li><strong>Therapeutic Range:</strong> 31-41g/1000 kcal in renal diets</li>
+                                        </ul>
+
+                                        <h3>Hydration and Sodium Management</h3>
+                                        <ul>
+                                            <li><strong>Hydration Critical:</strong> Kidneys lose concentration ability, requiring more dilute urine</li>
+                                            <li><strong>Wet Food Preferred:</strong> 75-80% moisture content aids continuous kidney flushing</li>
+                                            <li><strong>Sodium Restriction:</strong> Reduces kidney workload, helps manage blood pressure</li>
+                                            <li><strong>Avoid:</strong> High-sodium treats (cheese, deli meats, jerky)</li>
+                                        </ul>
+
+                                        <h3>Supporting Nutrients</h3>
+                                        <div class="nutrient-grid">
+                                            <div class="nutrient-card">
+                                                <h4>Omega-3 Fatty Acids (EPA/DHA)</h4>
+                                                <p>Anti-inflammatory properties reduce kidney oxidative stress and slow disease progression</p>
+                                            </div>
+                                            <div class="nutrient-card">
+                                                <h4>Potassium</h4>
+                                                <p>CKD impairs potassium conservation; supplementation prevents hypokalemia and muscle weakness</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Hepatic Support Section -->
+                                <section id="hepatic-support" class="report-section">
+                                    <div class="section-header">
+                                        <h2>Nutritional Support for Compromised Hepatic Function</h2>
+                                        <button class="btn btn--outline btn--sm section-toggle" onclick="toggleSection('hepatic-support')">Collapse</button>
+                                    </div>
+                                    <div class="section-content">
+                                        <p>With elevated liver enzymes (ALT: 308, ALP: 495, GGT: 28), the nutritional goal is to support remaining liver function, promote regeneration, and minimize metabolic demands.</p>
+
+                                        <h3>Protein Quality vs. Quantity: Dispelling Myths</h3>
+                                        <div class="callout callout-warning">
+                                            <p><strong>Common Misconception:</strong> Protein restriction is only indicated for Hepatic Encephalopathy (HE). Carmelo shows no signs of HE and requires adequate protein for liver regeneration.</p>
+                                        </div>
+                                        <ul>
+                                            <li><strong>Protein Sources by Ammonia Production:</strong>
+                                                <ul>
+                                                    <li>Higher ammonia: Red meats (beef, lamb)</li>
+                                                    <li>Lower ammonia: Dairy, high-quality vegetable proteins, poultry, fish, eggs</li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>Liver Regeneration:</strong> Requires steady supply of high-quality amino acids</li>
+                                            <li><strong>Protein Synthesis:</strong> Liver produces essential proteins like albumin</li>
+                                        </ul>
+
+                                        <h3>Critical Restrictions</h3>
+                                        <div class="restriction-grid">
+                                            <div class="restriction-card critical">
+                                                <h4>Fat Restriction</h4>
+                                                <p><strong>Essential due to:</strong></p>
+                                                <ul>
+                                                    <li>Cholecystectomy (no bile storage)</li>
+                                                    <li>Reduced liver fat metabolism capacity</li>
+                                                    <li>Prevention of GI upset</li>
+                                                </ul>
+                                            </div>
+                                            <div class="restriction-card critical">
+                                                <h4>Copper Restriction</h4>
+                                                <p><strong>Prevents:</strong></p>
+                                                <ul>
+                                                    <li>Toxic copper accumulation</li>
+                                                    <li>Hepatocyte damage</li>
+                                                    <li>Progression to cirrhosis</li>
+                                                </ul>
+                                                <p><strong>Avoid:</strong> Organ meats, shellfish, nuts, legumes</p>
+                                            </div>
+                                        </div>
+
+                                        <h3>Hepatoprotective Compounds</h3>
+                                        <ul>
+                                            <li><strong>S-adenosylmethionine (SAMe):</strong> Glutathione precursor, cellular protection and repair</li>
+                                            <li><strong>Silymarin (Milk Thistle):</strong> Antioxidant, anti-inflammatory, membrane stabilization</li>
+                                            <li><strong>Vitamin E & C:</strong> Antioxidant protection against oxidative stress</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <!-- Co-occurring Conditions Section -->
+                                <section id="co-occurring-conditions" class="report-section">
+                                    <div class="section-header">
+                                        <h2>Integrating Co-Occurring Conditions: Digestive and Cardiac Health</h2>
+                                        <button class="btn btn--outline btn--sm section-toggle" onclick="toggleSection('co-occurring-conditions')">Collapse</button>
+                                    </div>
+                                    <div class="section-content">
+                                        <h3>Post-Cholecystectomy Dietary Requirements</h3>
+                                        <div class="callout callout-error">
+                                            <p><strong>Non-Negotiable:</strong> Strict low-fat diet due to loss of bile storage and concentration mechanism.</p>
+                                        </div>
+                                        <p><strong>Digestive Process Changes:</strong></p>
+                                        <ul>
+                                            <li>No bile storage/concentration capability</li>
+                                            <li>Continuous but dilute bile flow</li>
+                                            <li>Easily overwhelmed by high-fat meals</li>
+                                            <li>Risk of maldigestion, diarrhea, cramping</li>
+                                        </ul>
+                                        <p><strong>Dietary Adaptations:</strong></p>
+                                        <ul>
+                                            <li>Maximum 30% of calories from fat</li>
+                                            <li>Limit saturated fats particularly</li>
+                                            <li>Smaller, frequent meals (4-6 daily)</li>
+                                            <li>Avoid fatty meats, poultry skin, full-fat dairy</li>
+                                        </ul>
+
+                                        <h3>Cardiac Nutritional Support</h3>
+                                        <p>With stable heart condition, nutritional support prevents progression to congestive heart failure.</p>
+                                        <ul>
+                                            <li><strong>Sodium Management:</strong> Prevents fluid retention and reduces cardiac workload</li>
+                                            <li><strong>Supportive Nutrients:</strong>
+                                                <ul>
+                                                    <li>Omega-3 fatty acids (anti-inflammatory, anti-arrhythmic)</li>
+                                                    <li>Taurine (cardiac contractility, antioxidant)</li>
+                                                    <li>L-Carnitine (fatty acid transport for energy)</li>
+                                                    <li>Vitamin E (counters oxidative stress)</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <!-- Synthesized Plan Section -->
+                                <section id="synthesized-plan" class="report-section">
+                                    <div class="section-header">
+                                        <h2>A Synthesized Nutritional Plan for Carmelo</h2>
+                                        <button class="btn btn--outline btn--sm section-toggle" onclick="toggleSection('synthesized-plan')">Collapse</button>
+                                    </div>
+                                    <div class="section-content">
+                                        <div class="callout callout-success">
+                                            <h4>Recommended Foundation: Veterinary Therapeutic Renal Diet</h4>
+                                            <p>A therapeutic renal diet provides the most comprehensive and safest foundation, addressing multiple concurrent conditions in a single, balanced formulation.</p>
+                                        </div>
+
+                                        <h3>Rationale for Renal Diet Selection</h3>
+                                        <div class="rationale-grid">
+                                            <div class="rationale-item priority-1">
+                                                <h4>🎯 Most Critical Intervention</h4>
+                                                <p>Phosphorus restriction - hallmark of renal diets, most life-extending intervention documented in veterinary literature</p>
+                                            </div>
+                                            <div class="rationale-item priority-2">
+                                                <h4>💓 Cardiac Support</h4>
+                                                <p>Restricted sodium for blood pressure and kidney workload management</p>
+                                            </div>
+                                            <div class="rationale-item priority-2">
+                                                <h4>🌟 Digestive Compatibility</h4>
+                                                <p>Low-to-moderate fat, high digestibility suitable for post-cholecystectomy</p>
+                                            </div>
+                                            <div class="rationale-item priority-2">
+                                                <h4>🥩 Optimal Protein Balance</h4>
+                                                <p>Moderate, high-quality protein prevents uremic toxins while supporting liver regeneration</p>
+                                            </div>
+                                        </div>
+
+                                        <h3>Why Not Hepatic Diet?</h3>
+                                        <ul>
+                                            <li>Lacks critical phosphorus restriction</li>
+                                            <li>Fails to address most pressing long-term threat</li>
+                                            <li>Protein restriction only needed for hepatic encephalopathy (not present)</li>
+                                        </ul>
+
+                                        <h3>Implementation Guidelines</h3>
+                                        <ul>
+                                            <li><strong>Formulation:</strong> Canned/wet preferred for hydration (75-80% moisture)</li>
+                                            <li><strong>Transition:</strong> Gradual over 7-10 days to prevent GI upset</li>
+                                            <li><strong>Feeding:</strong> Multiple small meals (4-6 daily) to match bile flow</li>
+                                            <li><strong>Monitoring:</strong> Veterinary supervision for clinical response assessment</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <!-- Dietary Claims Section -->
+                                <section id="dietary-claims" class="report-section">
+                                    <div class="section-header">
+                                        <h2>Deconstructing Common Dietary Claims: An Evidence-Based Guide</h2>
+                                        <button class="btn btn--outline btn--sm section-toggle" onclick="toggleSection('dietary-claims')">Collapse</button>
+                                    </div>
+                                    <div class="section-content">
+                                        <h3>The "Low Protein" Misconception</h3>
+                                        <div class="myth-buster">
+                                            <div class="myth">
+                                                <h4>❌ Myth</h4>
+                                                <p>"Dogs with kidney/liver disease need low protein diets"</p>
+                                            </div>
+                                            <div class="fact">
+                                                <h4>✅ Reality</h4>
+                                                <p>Need <strong>optimal</strong> amounts of <strong>high-quality</strong> protein. Excessive restriction causes muscle wasting, immune dysfunction, and impaired healing.</p>
+                                            </div>
+                                        </div>
+
+                                        <h3>The "No Chicken" Rationale</h3>
+                                        <ul>
+                                            <li><strong>Valid for:</strong> Dogs with confirmed chicken allergies</li>
+                                            <li><strong>Not relevant for Carmelo:</strong> No allergy history, chicken is excellent high-quality protein</li>
+                                            <li><strong>Focus should be:</strong> Protein digestibility and biological value, not specific animal source</li>
+                                        </ul>
+
+                                        <h3>Grains, Fillers, and By-Products</h3>
+                                        <div class="ingredient-analysis">
+                                            <h4>Marketing vs. Science</h4>
+                                            <ul>
+                                                <li><strong>Grains:</strong> Valuable carbohydrate sources, spare protein for tissue repair</li>
+                                                <li><strong>By-products:</strong> Can include nutritious organ meats (though avoided for Carmelo due to phosphorus/copper)</li>
+                                                <li><strong>Reality:</strong> Final nutrient profile and quality control more important than ingredient marketing</li>
+                                            </ul>
+                                        </div>
+
+                                        <h3>Raw, Fresh, and Home-Cooked Diet Risks</h3>
+                                        <div class="callout callout-error">
+                                            <h4>⚠️ Strong Contraindication for Carmelo</h4>
+                                            <ul>
+                                                <li><strong>Raw Diets:</strong> Bacterial contamination risk (Salmonella, E. coli, Listeria) dangerous for immunocompromised seniors</li>
+                                                <li><strong>Home-Cooked:</strong> Formulating balanced diet for multiple concurrent diseases requires veterinary nutritionist expertise</li>
+                                                <li><strong>Risks:</strong> Incorrect phosphorus, calcium, sodium, potassium, or amino acid levels can rapidly worsen conditions</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Nutraceuticals Section -->
+                                <section id="nutraceuticals" class="report-section">
+                                    <div class="section-header">
+                                        <h2>The Role of Nutraceuticals and Supplements</h2>
+                                        <button class="btn btn--outline btn--sm section-toggle" onclick="toggleSection('nutraceuticals')">Collapse</button>
+                                    </div>
+                                    <div class="section-content">
+                                        <h3>Evidence-Based Supplementation</h3>
+                                        <p>Nutraceuticals serve as adjunctive therapies to support the therapeutic diet foundation.</p>
+
+                                        <div class="supplement-detailed-grid">
+                                            <div class="supplement-detailed-card priority">
+                                                <h4>🐟 Omega-3 Fatty Acids (EPA & DHA)</h4>
+                                                <div class="supplement-details">
+                                                    <p><strong>Benefits for Carmelo:</strong></p>
+                                                    <ul>
+                                                        <li><strong>Renal:</strong> Reduce kidney inflammation, slow CKD progression, support blood pressure</li>
+                                                        <li><strong>Hepatic:</strong> Anti-inflammatory properties modulate liver stress</li>
+                                                        <li><strong>Cardiac:</strong> Support cardiovascular health, reduce arrhythmia risk</li>
+                                                    </ul>
+                                                    <p><strong>Considerations:</strong> Use high-quality, third-party tested products; veterinary dosing to avoid GI upset or clotting effects</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="supplement-detailed-card recommended">
+                                                <h4>🦠 Probiotics and Synbiotics</h4>
+                                                <div class="supplement-details">
+                                                    <p><strong>Gut-Kidney-Liver Axis:</strong> Emerging science on microbiome communication with organs</p>
+                                                    <ul>
+                                                        <li><strong>Enteric Detoxification:</strong> Specific bacteria metabolize and trap uremic toxins</li>
+                                                        <li><strong>Immune Support:</strong> Modulate systemic inflammation</li>
+                                                        <li><strong>Digestive Aid:</strong> Support post-surgical GI adaptation</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="supplement-detailed-card hepatoprotective">
+                                                <h4>🌿 Hepatoprotectants</h4>
+                                                <div class="supplement-details">
+                                                    <p><strong>S-adenosylmethionine (SAMe):</strong></p>
+                                                    <ul>
+                                                        <li>Glutathione precursor (critical intracellular antioxidant)</li>
+                                                        <li>Supports liver cell protection and repair</li>
+                                                        <li>Evidence-based for chronic liver conditions</li>
+                                                    </ul>
+                                                    <p><strong>Silymarin (Milk Thistle):</strong></p>
+                                                    <ul>
+                                                        <li>Potent antioxidant and anti-inflammatory</li>
+                                                        <li>Stabilizes liver cell membranes</li>
+                                                        <li>Increases resistance to hepatotoxins</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="callout callout-warning">
+                                            <h4>⚠️ Implementation Requirements</h4>
+                                            <ul>
+                                                <li>All supplements must be veterinary-approved and supervised</li>
+                                                <li>Quality control essential - third-party testing for purity and potency</li>
+                                                <li>Dosing based on body weight, condition severity, and other medications</li>
+                                                <li>Monitor for interactions and side effects</li>
+                                                <li>Regular reassessment based on bloodwork changes</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Tabs -->
+                <div class="tab-content" id="research1">
+                    <div class="tab-header">
+                        <h2>Additional Research Report #1</h2>
+                        <button class="btn btn--secondary print-btn" onclick="window.print()">Print</button>
+                    </div>
+                    <div class="research-section">
+                        <textarea id="research1-content" class="research-textarea" placeholder="Paste your first AI research report here..."></textarea>
+                        <button class="btn btn--primary" onclick="saveResearch('research1')">Save Report</button>
+                        <div id="research1-display" class="research-display"></div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="research2">
+                    <div class="tab-header">
+                        <h2>Additional Research Report #2</h2>
+                        <button class="btn btn--secondary print-btn" onclick="window.print()">Print</button>
+                    </div>
+                    <div class="research-section">
+                        <textarea id="research2-content" class="research-textarea" placeholder="Paste your second AI research report here..."></textarea>
+                        <button class="btn btn--primary" onclick="saveResearch('research2')">Save Report</button>
+                        <div id="research2-display" class="research-display"></div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="research3">
+                    <div class="tab-header">
+                        <h2>Additional Research Report #3</h2>
+                        <button class="btn btn--secondary print-btn" onclick="window.print()">Print</button>
+                    </div>
+                    <div class="research-section">
+                        <textarea id="research3-content" class="research-textarea" placeholder="Paste your third AI research report here..."></textarea>
+                        <button class="btn btn--primary" onclick="saveResearch('research3')">Save Report</button>
+                        <div id="research3-display" class="research-display"></div>
+                    </div>
+                </div>
+
+                <!-- Veterinary Contacts Tab -->
+                <div class="tab-content" id="veterinary">
+                    <div class="tab-header">
+                        <h2>Veterinary Information</h2>
+                        <button class="btn btn--secondary print-btn" onclick="window.print()">Print</button>
+                    </div>
+
+                    <div class="veterinary-grid">
+                        <div class="contact-section">
+                            <h3>Primary Veterinarian</h3>
+                            <div class="contact-form">
+                                <input type="text" id="vet-name" class="form-control" placeholder="Veterinarian Name">
+                                <input type="text" id="vet-clinic" class="form-control" placeholder="Clinic Name">
+                                <input type="tel" id="vet-phone" class="form-control" placeholder="Phone Number">
+                                <input type="email" id="vet-email" class="form-control" placeholder="Email">
+                                <textarea id="vet-notes" class="form-control" placeholder="Additional notes..."></textarea>
+                                <button class="btn btn--primary" onclick="saveVetInfo()">Save Contact Info</button>
+                            </div>
+                        </div>
+
+                        <div class="emergency-section">
+                            <h3>Emergency Contacts</h3>
+                            <div class="contact-form">
+                                <input type="text" id="emergency-clinic" class="form-control" placeholder="Emergency Clinic Name">
+                                <input type="tel" id="emergency-phone" class="form-control" placeholder="Emergency Phone">
+                                <input type="text" id="emergency-hours" class="form-control" placeholder="Hours of Operation">
+                                <button class="btn btn--primary" onclick="saveEmergencyInfo()">Save Emergency Info</button>
+                            </div>
+                        </div>
+
+                        <div class="medication-section">
+                            <h3>Current Medications</h3>
+                            <div class="medication-tracker">
+                                <div class="medication-input">
+                                    <input type="text" id="med-name" class="form-control" placeholder="Medication Name">
+                                    <input type="text" id="med-dosage" class="form-control" placeholder="Dosage">
+                                    <input type="text" id="med-frequency" class="form-control" placeholder="Frequency">
+                                    <button class="btn btn--secondary" onclick="addMedication()">Add Medication</button>
+                                </div>
+                                <div id="medication-list" class="medication-list"></div>
+                            </div>
+                        </div>
+
+                        <div class="appointment-section">
+                            <h3>Appointment Reminders</h3>
+                            <div class="appointment-tracker">
+                                <div class="appointment-input">
+                                    <input type="date" id="appt-date" class="form-control">
+                                    <input type="time" id="appt-time" class="form-control">
+                                    <input type="text" id="appt-reason" class="form-control" placeholder="Appointment Reason">
+                                    <button class="btn btn--secondary" onclick="addAppointment()">Add Appointment</button>
+                                </div>
+                                <div id="appointment-list" class="appointment-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
