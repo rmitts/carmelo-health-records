@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinical Nutrition Report - Carmelo</title>
@@ -25,6 +23,8 @@
             --text-secondary: #64748b;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --gradient-success: linear-gradient(135deg, #10b981, #059669);
         }
 
         body {
@@ -35,7 +35,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: var(--gradient-primary);
             color: white;
             padding: 2rem 0;
             text-align: center;
@@ -65,7 +65,7 @@
 
         .main-content {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 320px 1fr;
             gap: 2rem;
             margin: 2rem auto;
             max-width: 1400px;
@@ -80,6 +80,8 @@
             height: fit-content;
             position: sticky;
             top: 120px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
         }
 
         .sidebar h3 {
@@ -350,6 +352,12 @@
             border-left: 4px solid var(--accent-color);
         }
 
+        .principle-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
         .principle-card h4 {
             color: var(--primary-color);
             margin-bottom: 0.5rem;
@@ -406,6 +414,97 @@
             padding: 1rem;
         }
 
+        .supplement-card {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #7dd3fc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #0ea5e9;
+        }
+
+        .supplement-card h3 {
+            color: #0284c7;
+            margin-bottom: 0.75rem;
+        }
+
+        .supplement-card h4 {
+            color: #0369a1;
+            margin-bottom: 0.5rem;
+        }
+
+        .implementation-step {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .implementation-step h3 {
+            color: var(--success-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .transition-timeline {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 1px solid #fbbf24;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .transition-timeline h3 {
+            color: #92400e;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-step {
+            margin: 0.5rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #fbbf24;
+        }
+
+        .timeline-step:last-child {
+            border-bottom: none;
+        }
+
+        .monitoring-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .monitoring-card {
+            background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+            border: 1px solid #f9a8d4;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 4px solid #ec4899;
+        }
+
+        .monitoring-card h4 {
+            color: #be185d;
+            margin-bottom: 0.5rem;
+        }
+
+        .conclusion-box {
+            background: var(--gradient-success);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .conclusion-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
         .download-btn {
             position: fixed;
             bottom: 2rem;
@@ -437,6 +536,7 @@
             .sidebar {
                 position: relative;
                 top: 0;
+                max-height: none;
             }
             
             .header h1 {
@@ -449,6 +549,10 @@
             
             .data-table {
                 font-size: 0.85rem;
+            }
+
+            .monitoring-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -506,7 +610,7 @@
         <nav class="sidebar">
             <h3>Navigation</h3>
             <ul class="nav-menu">
-                <li><a href="#executive-summary" class="nav-link">Executive Summary</a></li>
+                <li><a href="#executive-summary" class="nav-link active">Executive Summary</a></li>
                 <li><a href="#clinical-data" class="nav-link">Clinical Data Analysis</a>
                     <ul class="nav-submenu">
                         <li><a href="#phosphorus-analysis" class="nav-link">Phosphorus Analysis</a></li>
@@ -516,14 +620,14 @@
                     <ul class="nav-submenu">
                         <li><a href="#phosphorus-restriction" class="nav-link">Phosphorus Restriction</a></li>
                         <li><a href="#protein-paradox" class="nav-link">Protein Management</a></li>
-                        <li><a href="#hydration-sodium" class="nav-link">Hydration & Sodium</a></li>
+                        <li><a href="#hydration-sodium" class="nav-link">Hydration &amp; Sodium</a></li>
                         <li><a href="#supporting-nutrients" class="nav-link">Supporting Nutrients</a></li>
                     </ul>
                 </li>
                 <li><a href="#hepatic-support" class="nav-link">Hepatic Function Support</a>
                     <ul class="nav-submenu">
                         <li><a href="#protein-quality" class="nav-link">Protein Quality</a></li>
-                        <li><a href="#fat-copper" class="nav-link">Fat & Copper Restrictions</a></li>
+                        <li><a href="#fat-copper" class="nav-link">Fat &amp; Copper Restrictions</a></li>
                         <li><a href="#antioxidants" class="nav-link">Antioxidants</a></li>
                     </ul>
                 </li>
@@ -535,6 +639,22 @@
                 </li>
                 <li><a href="#synthesized-plan" class="nav-link">Synthesized Plan</a></li>
                 <li><a href="#dietary-claims" class="nav-link">Dietary Claims Analysis</a></li>
+                <li><a href="#nutraceuticals" class="nav-link">Nutraceuticals &amp; Supplements</a>
+                    <ul class="nav-submenu">
+                        <li><a href="#omega-3" class="nav-link">Omega-3 Fatty Acids</a></li>
+                        <li><a href="#probiotics" class="nav-link">Probiotics</a></li>
+                        <li><a href="#hepatoprotectants" class="nav-link">Hepatoprotectants</a></li>
+                    </ul>
+                </li>
+                <li><a href="#implementation" class="nav-link">Implementation Protocol</a>
+                    <ul class="nav-submenu">
+                        <li><a href="#diet-selection" class="nav-link">Diet Selection</a></li>
+                        <li><a href="#transition-protocol" class="nav-link">Transition Protocol</a></li>
+                        <li><a href="#feeding-strategy" class="nav-link">Feeding Strategy</a></li>
+                        <li><a href="#monitoring" class="nav-link">Monitoring</a></li>
+                    </ul>
+                </li>
+                <li><a href="#conclusion" class="nav-link">Conclusion</a></li>
             </ul>
         </nav>
 
@@ -595,7 +715,7 @@
                                 <th>Parameter</th>
                                 <th>Carmelo's Result</th>
                                 <th>Reference Range</th>
-                                <th>Clinical Significance & Nutritional Implication</th>
+                                <th>Clinical Significance &amp; Nutritional Implication</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -822,7 +942,7 @@
                         <p>Beyond sodium, other nutrients play a supportive role in myocardial (heart muscle) health. The heart is a highly metabolic organ that relies on a constant supply of energy. Research in dogs with mitral valve disease has identified metabolic shifts, including impaired energy metabolism and increased oxidative stress.[43, 44] Key nutrients that may help address these changes include:</p>
 
                         <ul>
-                            <li><strong>Omega-3 Fatty Acids (EPA & DHA):</strong> Just as they are beneficial for the kidneys, these fatty acids have anti-inflammatory and anti-arrhythmic properties that support cardiovascular health.[43, 45]</li>
+                            <li><strong>Omega-3 Fatty Acids (EPA &amp; DHA):</strong> Just as they are beneficial for the kidneys, these fatty acids have anti-inflammatory and anti-arrhythmic properties that support cardiovascular health.[43, 45]</li>
                             <li><strong>Taurine and L-Carnitine:</strong> These are amino acid-like compounds that are critical for normal heart muscle function. Taurine has antioxidant properties and is essential for cardiac contractility, while carnitine is vital for transporting fatty acids into the mitochondria for energy production.[43, 44, 45, 46] Deficiencies have been linked to certain types of heart disease (dilated cardiomyopathy), and supplementation is a standard part of cardiac support.</li>
                             <li><strong>Antioxidants:</strong> Nutrients like Vitamin E help to counter the increased oxidative stress experienced by the failing heart muscle.[43, 44]</li>
                         </ul>
@@ -911,6 +1031,158 @@
                     </div>
                 </div>
             </section>
+
+            <section id="nutraceuticals" class="section">
+                <h2 class="toggle-section">
+                    <span class="icon">▼</span>
+                    The Role of Nutraceuticals and Supplements
+                </h2>
+                <div class="section-content">
+                    <p>Nutraceuticals are supplements derived from food sources that may provide extra health benefits beyond basic nutrition. For Carmelo's specific conditions, several supplements are supported by scientific evidence and can be integrated into his management plan as adjunctive therapies.</p>
+
+                    <div id="omega-3" class="supplement-card">
+                        <h3>Omega-3 Fatty Acids (EPA &amp; DHA): The Anti-Inflammatory Powerhouse</h3>
+                        <p>The evidence supporting the use of long-chain omega-3 fatty acids from fish oil is robust and compelling for several of Carmelo's conditions. EPA and DHA are potent anti-inflammatory agents.[52]</p>
+
+                        <ul>
+                            <li><strong>For Renal Health:</strong> They have been shown to reduce inflammation within the kidneys, which can help slow the progression of chronic kidney disease. They may also help lower blood pressure and reduce protein loss in the urine.[2, 27]</li>
+                            <li><strong>For Hepatic Health:</strong> Their anti-inflammatory properties can help modulate the inflammation associated with chronic liver stress.[11, 53]</li>
+                            <li><strong>For Cardiac Health:</strong> They support cardiovascular health by reducing inflammation and potentially decreasing the risk of arrhythmias.[43, 45]</li>
+                        </ul>
+
+                        <p>Most therapeutic renal diets are already supplemented with omega-3s.[11, 25] However, additional supplementation may be beneficial. It is crucial to use a high-quality, third-party-tested product to avoid contaminants like heavy metals and to ensure potency. The dose should be determined by his veterinarian to avoid potential side effects like gastrointestinal upset or effects on blood clotting.[52]</p>
+                    </div>
+
+                    <div id="probiotics" class="supplement-card">
+                        <h3>Probiotics and Synbiotics: Supporting the Gut-Kidney-Liver Axis</h3>
+                        <p>This is an emerging and promising area of veterinary medicine. The concept of "enteric detoxification" is based on the gut-kidney axis, a communication pathway between the intestinal microbiome and the kidneys. The theory posits that specific probiotic bacteria, when introduced into the gut, can metabolize and trap uremic toxins (like urea) that have diffused from the bloodstream into the intestines.[54, 55] These bacteria then incorporate the nitrogenous waste into their own biomass, which is then excreted in the feces. This process effectively creates an alternative pathway for waste removal, reducing the amount of toxins that are reabsorbed into the blood and lessening the burden on the failing kidneys.[54]</p>
+
+                        <p>Products like Azodyl® and NEPHRODYL™ are specifically designed synbiotics (a combination of probiotics and prebiotics) for this purpose.[54, 55] Studies have shown that this approach can help maintain nutritional status and improve blood parameters in dogs with CKD.[56] There is also evidence that probiotics can support liver function by improving the integrity of the gut barrier, which reduces the translocation of bacterial endotoxins from the gut to the liver.[57, 58] Given Carmelo's dual organ stress, a renal-supportive probiotic is a highly recommended adjunctive therapy.</p>
+                    </div>
+
+                    <div id="hepatoprotectants" class="supplement-card">
+                        <h3>Hepatoprotectants: The Evidence for S-adenosylmethionine (SAMe) and Milk Thistle (Silymarin)</h3>
+                        <p>Given Carmelo's significantly elevated liver enzymes, the use of liver-protective supplements is strongly indicated.</p>
+
+                        <ul>
+                            <li><strong>S-adenosylmethionine (SAMe):</strong> SAMe is a naturally occurring molecule that plays a central role in liver metabolism. It is a precursor to glutathione, the liver's most important antioxidant.[34] Supplementation with SAMe has been shown to increase hepatic glutathione levels, which helps protect liver cells from oxidative damage. It may also aid in cell repair and regeneration.[29, 34]</li>
+                            <li><strong>Milk Thistle (Silymarin):</strong> Milk thistle is an herb whose active compounds, collectively known as silymarin, have potent antioxidant and anti-inflammatory properties.[35, 36] Silymarin is thought to protect the liver by scavenging free radicals, stabilizing the outer membrane of liver cells to prevent toxins from entering, and stimulating protein synthesis to promote regeneration.[36, 59]</li>
+                        </ul>
+
+                        <p>These two compounds are often used together in veterinary medicine and are available in combination products like Denamarin®.[34] For a dog with active liver stress like Carmelo, these supplements can provide valuable support to help mitigate ongoing damage and promote a healthier hepatic environment.[7]</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="implementation" class="section">
+                <h2 class="toggle-section">
+                    <span class="icon">▼</span>
+                    Actionable Recommendations and Implementation Protocol
+                </h2>
+                <div class="section-content">
+                    <p>The successful management of Carmelo's complex health issues hinges on the practical and consistent implementation of a carefully chosen dietary plan. The following protocol provides actionable steps for his caregiver, to be executed in close partnership with his primary veterinarian.</p>
+
+                    <div class="implementation-step">
+                        <h3>Choosing the Right Path: Therapeutic Prescription Diets vs. Formulated Home-Cooking</h3>
+                        <p>Based on the comprehensive analysis, the primary and strongest recommendation is to feed Carmelo a <strong>veterinary therapeutic renal diet</strong>. The risks associated with attempting to formulate a home-cooked diet for such a complex array of medical conditions are substantial. A therapeutic diet, developed by veterinary nutritionists and subjected to clinical testing, ensures that all of his intricate nutritional needs are met in a safe, balanced, and consistent manner.[2, 4, 11, 18]</p>
+                    </div>
+
+                    <div id="diet-selection" class="implementation-step">
+                        <h3>Specific Commercial Diet Recommendations and Analysis</h3>
+                        <p>The ideal choice is a <strong>canned or wet formulation of a therapeutic renal diet</strong> to maximize hydration. Several excellent options are available by prescription from a veterinarian. The ultimate choice may depend on Carmelo's individual preference and palatability, as ensuring adequate caloric intake is paramount in a senior dog with conditions that can suppress appetite.[4, 14]</p>
+
+                        <ul>
+                            <li><strong>Hill's Prescription Diet k/d Kidney Care:</strong> Available in multiple canned formulations (e.g., stews with chicken or beef) to enhance palatability.</li>
+                            <li><strong>Royal Canin Veterinary Diet Renal Support:</strong> Available in several canned textures and flavors (e.g., "D" for delectable/aromatic, "T" for tasty/texture) specifically designed to entice dogs with poor appetites.</li>
+                            <li><strong>Purina Pro Plan Veterinary Diets NF Kidney Function:</strong> Another clinically proven option available in a canned formula.</li>
+                        </ul>
+
+                        <p>The caregiver may need to obtain several different options to determine which one Carmelo will eat most consistently. Mixing a small amount of low-sodium broth (no onion or garlic) or tuna juice packed in water can sometimes be used to improve flavor, with veterinary approval.[2]</p>
+                    </div>
+
+                    <div id="transition-protocol" class="transition-timeline">
+                        <h3>A Protocol for Safe Dietary Transition</h3>
+                        <p>A sudden change in diet can cause significant gastrointestinal upset, especially in a dog with a sensitive stomach. The transition to the new therapeutic food must be done gradually over a period of at least 7 to 10 days.[39]</p>
+
+                        <div class="timeline-step"><strong>Day 1-2:</strong> Mix 90% of his current food with 10% of the new renal diet.</div>
+                        <div class="timeline-step"><strong>Day 3-4:</strong> Adjust the ratio to 75% old food and 25% new food.</div>
+                        <div class="timeline-step"><strong>Day 5-6:</strong> Move to a 50/50 mixture.</div>
+                        <div class="timeline-step"><strong>Day 7-8:</strong> Adjust to 25% old food and 75% new food.</div>
+                        <div class="timeline-step"><strong>Day 9-10:</strong> Transition to 100% of the new renal diet.</div>
+
+                        <p>If at any point he develops vomiting or diarrhea, the transition should be paused or slowed down.</p>
+                    </div>
+
+                    <div id="feeding-strategy" class="implementation-step">
+                        <h3>Feeding Strategy and Environmental Management</h3>
+                        <ul>
+                            <li><strong>Feeding Schedule:</strong> Instead of one or two large meals, Carmelo should be fed <strong>three to four smaller meals</strong> spaced throughout the day.[13, 60] This approach is easier on his digestive system in the absence of a gallbladder and can help maintain more stable blood sugar and metabolic levels.</li>
+                            <li><strong>Feeding Environment:</strong> Provide his meals in a quiet, low-stress environment where he can eat peacefully.[39] As a senior dog, he may benefit from raised food and water bowls to reduce strain on his neck and joints.[39, 61]</li>
+                            <li><strong>Treats:</strong> All current treats must be discontinued and replaced with options that are compatible with his dietary restrictions. Many high-sodium, high-fat, or high-phosphorus treats can completely undermine the benefits of the therapeutic diet. Safe options include small pieces of low-phosphorus fruits and vegetables (e.g., green beans, carrots, apple slices), cooked egg whites, or commercially available therapeutic treats designed for renal or cardiac patients (e.g., Hill's Prescription Diet Original Treats).[22, 62, 63] All treats should make up no more than 10% of his total daily caloric intake.</li>
+                        </ul>
+                    </div>
+
+                    <div id="monitoring" class="implementation-step">
+                        <h3>Monitoring and Follow-Up: A Collaborative Approach</h3>
+                        <p>Nutritional management is a dynamic process. Regular monitoring and follow-up with his veterinarian are critical to assess his response to the new diet and make adjustments as needed.</p>
+
+                        <div class="monitoring-grid">
+                            <div class="monitoring-card">
+                                <h4>Veterinary Rechecks</h4>
+                                <p>A follow-up appointment should be scheduled approximately 4-6 weeks after successfully transitioning to the new diet.</p>
+                            </div>
+                            <div class="monitoring-card">
+                                <h4>Bloodwork</h4>
+                                <p>At the follow-up visit, a recheck of his key blood parameters is essential. The veterinarian will monitor his BUN, Creatinine, Phosphorus, Calcium, and liver enzymes to gauge the diet's effectiveness.[6]</p>
+                            </div>
+                            <div class="monitoring-card">
+                                <h4>Urinalysis</h4>
+                                <p>A urinalysis can provide additional information about kidney function and hydration status.</p>
+                            </div>
+                            <div class="monitoring-card">
+                                <h4>Body Weight &amp; Condition</h4>
+                                <p>Weigh him weekly to ensure he is maintaining a stable weight. A body condition score should be regularly assessed to ensure he is not losing lean muscle mass.[14, 61]</p>
+                            </div>
+                            <div class="monitoring-card">
+                                <h4>Appetite &amp; Water Intake</h4>
+                                <p>Any significant decrease in appetite or water consumption should be reported immediately, as it can be an early sign of worsening uremia.[14, 64]</p>
+                            </div>
+                            <div class="monitoring-card">
+                                <h4>Clinical Signs</h4>
+                                <p>Note any changes in his energy level, coat quality, or the presence of vomiting, diarrhea, or constipation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conclusion" class="section">
+                <h2 class="toggle-section">
+                    <span class="icon">▼</span>
+                    Concluding Remarks
+                </h2>
+                <div class="section-content">
+                    <div class="conclusion-box">
+                        <h3>Comprehensive Care Through Nutrition</h3>
+                        <p>The nutritional management of Carmelo's concurrent renal, hepatic, digestive, and cardiac conditions is a cornerstone of his therapeutic plan.</p>
+                    </div>
+
+                    <p>The nutritional management of Carmelo's concurrent renal, hepatic, digestive, and cardiac conditions is a cornerstone of his therapeutic plan. A well-formulated diet can significantly impact his quality of life, alleviate clinical signs associated with organ dysfunction, and has the potential to slow the progression of his underlying diseases. The evidence overwhelmingly supports a strategy centered on a veterinary therapeutic renal diet, chosen for its ability to address the most critical and life-limiting aspects of his condition—namely, the need for stringent phosphorus restriction—while simultaneously supporting his other systemic needs.</p>
+
+                    <p>This dietary foundation, enhanced by targeted, evidence-based nutraceuticals, provides a powerful tool for managing his health. However, this is not a static plan. His needs will evolve over time, and the success of this strategy depends on a strong, collaborative partnership between a dedicated caregiver and a trusted veterinarian. Through careful implementation, diligent monitoring, and ongoing adjustments, this nutritional approach offers the best opportunity to support Carmelo's health and well-being throughout his senior years.</p>
+
+                    <div class="success">
+                        <h4>Key Success Factors</h4>
+                        <ul>
+                            <li><strong>Evidence-Based Approach:</strong> All recommendations are grounded in peer-reviewed veterinary literature</li>
+                            <li><strong>Holistic Management:</strong> Addressing multiple organ systems with a single, unified strategy</li>
+                            <li><strong>Veterinary Partnership:</strong> Close collaboration with the primary care veterinarian</li>
+                            <li><strong>Ongoing Monitoring:</strong> Regular assessment and adjustment based on clinical response</li>
+                            <li><strong>Quality of Life Focus:</strong> Prioritizing comfort and well-being alongside medical management</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
@@ -994,7 +1266,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'Carmelo_Clinical_Nutrition_Report.html';
+            a.download = 'Carmelo_Clinical_Nutrition_Report_Complete.html';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -1005,6 +1277,32 @@
         function printReport() {
             window.print();
         }
+
+        // Expand all sections functionality
+        function expandAllSections() {
+            const toggleSections = document.querySelectorAll('.toggle-section');
+            toggleSections.forEach(toggle => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('.icon');
+                
+                content.classList.remove('collapsed');
+                icon.textContent = '▼';
+                toggle.classList.remove('collapsed');
+            });
+        }
+
+        // Collapse all sections functionality
+        function collapseAllSections() {
+            const toggleSections = document.querySelectorAll('.toggle-section');
+            toggleSections.forEach(toggle => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('.icon');
+                
+                content.classList.add('collapsed');
+                icon.textContent = '▶';
+                toggle.classList.add('collapsed');
+            });
+        }
     </script>
-</body>
-</html>
+
+</body></html>
