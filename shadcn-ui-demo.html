@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinical Nutrition Report - shadcn/ui Version</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FlyonUI JS for Scrollspy -->
+    <script src="https://cdn.jsdelivr.net/npm/preline@2.4.1/dist/preline.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -108,11 +110,11 @@
                 
                 <!-- Sidebar Content -->
                 <div class="flex-1 overflow-auto py-2">
-                    <nav class="grid gap-1 px-2">
+                    <nav class="grid gap-1 px-2" data-scrollspy="#main-content" data-scrollspy-scrollable-parent="main">
                         <div class="px-2 py-2">
                             <h3 class="mb-2 px-2 text-xs font-semibold tracking-tight">Overview</h3>
                             <div class="grid gap-1">
-                                <a href="#executive-summary" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium bg-accent text-accent-foreground transition-all">
+                                <a href="#executive-summary" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">
                                     <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M12 2H2v10h10V2z"></path>
                                         <path d="M12 12H2v10h10V12z"></path>
@@ -121,7 +123,7 @@
                                     </svg>
                                     Executive Summary
                                 </a>
-                                <a href="#analysis-of-clinical-data" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">
+                                <a href="#analysis-of-clinical-data" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">
                                     <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <rect width="20" height="14" x="2" y="5" rx="2"></rect>
                                         <line x1="2" x2="22" y1="10" y2="10"></line>
@@ -147,10 +149,10 @@
                                         </svg>
                                     </button>
                                     <div id="renal-submenu" class="hidden grid gap-1 pl-6 pt-1">
-                                        <a href="#renal-stress-principles" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Core Principles</a>
-                                        <a href="#phosphorus-restriction" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Phosphorus Restriction</a>
-                                        <a href="#protein-paradox" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Protein Management</a>
-                                        <a href="#hydration-sodium" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Hydration & Sodium</a>
+                                        <a href="#renal-stress-principles" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">Core Principles</a>
+                                        <a href="#phosphorus-restriction" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">Phosphorus Restriction</a>
+                                        <a href="#protein-paradox" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">Protein Management</a>
+                                        <a href="#hydration-sodium" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">Hydration & Sodium</a>
                                     </div>
                                 </div>
 
@@ -169,9 +171,9 @@
                                         </svg>
                                     </button>
                                     <div id="liver-submenu" class="hidden grid gap-1 pl-6 pt-1">
-                                        <a href="#hepatic-function-support" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Basic Principles</a>
-                                        <a href="#liver-protein" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Protein Quality</a>
-                                        <a href="#fat-copper" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Fat & Copper Restrictions</a>
+                                        <a href="#hepatic-function-support" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">Basic Principles</a>
+                                        <a href="#liver-protein" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">Protein Quality</a>
+                                        <a href="#fat-copper" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">Fat & Copper Restrictions</a>
                                     </div>
                                 </div>
 
@@ -190,9 +192,9 @@
                                         </svg>
                                     </button>
                                     <div id="coexisting-submenu" class="hidden grid gap-1 pl-6 pt-1">
-                                        <a href="#co-occurring-conditions" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Overview</a>
-                                        <a href="#low-fat-mandate" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Post-Cholecystectomy</a>
-                                        <a href="#cardiac-support" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Cardiac Support</a>
+                                        <a href="#co-occurring-conditions" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">Overview</a>
+                                        <a href="#low-fat-mandate" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">Post-Cholecystectomy</a>
+                                        <a href="#cardiac-support" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">Cardiac Support</a>
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +203,7 @@
                         <div class="px-2 py-2">
                             <h3 class="mb-2 px-2 text-xs font-semibold tracking-tight">Recommendations</h3>
                             <div class="grid gap-1">
-                                <a href="#synthesized-plan" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">
+                                <a href="#synthesized-plan" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">
                                     <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1-4 0V5a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v12a2 2 0 1 1-4 0V7a1 1 0 0 1 1-1h3"></path>
                                         <path d="M8 8a2 2 0 1 1 4 0v8a2 2 0 1 1-4 0z"></path>
@@ -209,14 +211,14 @@
                                     </svg>
                                     Nutrition Plan
                                 </a>
-                                <a href="#nutraceuticals-supplements" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">
+                                <a href="#nutraceuticals-supplements" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">
                                     <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <path d="m4.9 4.9 14.2 14.2"></path>
                                     </svg>
                                     Supplements
                                 </a>
-                                <a href="#diet-recommendations" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">
+                                <a href="#diet-recommendations" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground scrollspy-active:bg-accent scrollspy-active:text-accent-foreground transition-all">
                                     <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <circle cx="8" cy="21" r="1"></circle>
                                         <circle cx="19" cy="21" r="1"></circle>
@@ -350,7 +352,7 @@
             </header>
 
             <!-- Page Content -->
-            <main class="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-6 md:gap-8">
+            <main id="main-content" class="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-6 md:gap-8">
                 <div class="mx-auto w-full max-w-4xl">
                     <!-- Report Content -->
                     <article class="prose dark:prose-invert prose-slate max-w-none">
@@ -492,6 +494,75 @@
                                 <strong>Copper Restriction:</strong> Copper is an essential trace mineral, but in some dogs, a genetic defect or chronic liver disease can lead to an inability to excrete copper properly.
                             </li>
                         </ul>
+
+                        <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-12" id="co-occurring-conditions">Integrating Co-Occurring Conditions</h2>
+                        <p>Carmelo's dietary plan cannot be formulated in a vacuum; it must fully integrate the hard constraints and additional considerations imposed by his other significant health issues. His history of a cholecystectomy creates a non-negotiable requirement for fat restriction, while his stable heart condition necessitates careful management of sodium and other key nutrients.</p>
+
+                        <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight mt-8" id="low-fat-mandate">The Non-Negotiable Low-Fat Mandate: Diet Post-Cholecystectomy</h3>
+                        <p>The surgical removal of the gallbladder (cholecystectomy) fundamentally alters the process of fat digestion. The gallbladder does not produce bile, but it acts as a reservoir, storing and concentrating the bile that is continuously produced by the liver.</p>
+                        
+                        <div class="my-6 rounded-lg border-l-4 border-destructive bg-destructive/10 p-4">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5 text-destructive mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-21 12a9 9 0 1118 0 9 9 0 01-18 0z"></path>
+                                </svg>
+                                <h4 class="text-sm font-medium text-destructive">Dietary Constraint: Post-Cholecystectomy</h4>
+                            </div>
+                            <p class="mt-2 text-sm">Without a gallbladder, this storage and concentration mechanism is lost. Bile still flows from the liver to the intestine, but it does so in a slow, continuous trickle. This system is sufficient to handle small amounts of dietary fat, but it is easily overwhelmed by a large, high-fat meal.</p>
+                        </div>
+
+                        <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight mt-8" id="cardiac-support">Supporting a Stable Heart: The Role of Sodium and Myocardial Nutrients</h3>
+                        <p>While Carmelo's heart condition is described as stable, nutritional support is a key component of long-term management to prevent progression and the onset of congestive heart failure (CHF). The primary dietary consideration for cardiac health is the management of sodium.</p>
+                        
+                        <div class="my-6 rounded-lg border bg-card p-4 text-card-foreground">
+                            <p class="text-sm">Excess dietary sodium causes the body to retain water, increasing the total volume of blood circulating through the vessels. This increased volume raises blood pressure and forces the heart to work harder to pump, which can exacerbate underlying heart disease and precipitate congestive heart failure.</p>
+                        </div>
+
+                        <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-12" id="synthesized-plan">A Synthesized Nutritional Plan for Carmelo</h2>
+                        <p>Developing a nutritional plan for a patient with multiple, complex, and interacting disease states requires a careful synthesis of all relevant principles to arrive at a single, coherent strategy. The dietary needs for Carmelo's renal, hepatic, digestive, and cardiac conditions have apparent conflicts, particularly regarding protein management.</p>
+                        
+                        <div class="my-6 rounded-lg border bg-card p-4 text-card-foreground">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <h4 class="text-sm font-medium">Primary Recommendation</h4>
+                            </div>
+                            <p class="mt-2 text-sm">The evidence strongly supports the use of a <strong>veterinary therapeutic renal diet</strong> as the optimal foundational plan for Carmelo. This conclusion is reached by methodically comparing the nutritional profiles of renal and hepatic diets against his complete list of needs.</p>
+                        </div>
+
+                        <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-12" id="nutraceuticals-supplements">The Role of Nutraceuticals and Supplements</h2>
+                        <p>Nutraceuticals are supplements derived from food sources that may provide extra health benefits beyond basic nutrition. For Carmelo's specific conditions, several supplements are supported by scientific evidence and can be integrated into his management plan as adjunctive therapies.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mt-6">
+                            <div class="rounded-lg border bg-card p-4 text-card-foreground">
+                                <h4 class="text-sm font-medium mb-2">Omega-3 Fatty Acids (EPA & DHA)</h4>
+                                <p class="text-xs text-muted-foreground">The evidence supporting the use of long-chain omega-3 fatty acids from fish oil is robust and compelling for several of Carmelo's conditions. EPA and DHA are potent anti-inflammatory agents.</p>
+                            </div>
+                            <div class="rounded-lg border bg-card p-4 text-card-foreground">
+                                <h4 class="text-sm font-medium mb-2">S-adenosylmethionine (SAMe)</h4>
+                                <p class="text-xs text-muted-foreground">SAMe is a naturally occurring molecule that plays a central role in liver metabolism. It is a precursor to glutathione, the liver's most important antioxidant.</p>
+                            </div>
+                        </div>
+
+                        <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-12" id="diet-recommendations">Specific Commercial Diet Recommendations and Analysis</h2>
+                        <p>The ideal choice is a <strong>canned or wet formulation of a therapeutic renal diet</strong> to maximize hydration. Several excellent options are available by prescription from a veterinarian. The ultimate choice may depend on Carmelo's individual preference and palatability.</p>
+                        
+                        <h4 class="text-base font-medium mt-6 mb-4">Recommended Options:</h4>
+                        <div class="space-y-4">
+                            <div class="rounded-lg border bg-card p-4 text-card-foreground">
+                                <h5 class="text-sm font-medium">Hill's Prescription Diet k/d Kidney Care</h5>
+                                <p class="text-xs text-muted-foreground mt-1">Available in multiple canned formulations (e.g., stews with chicken or beef) to enhance palatability.</p>
+                            </div>
+                            <div class="rounded-lg border bg-card p-4 text-card-foreground">
+                                <h5 class="text-sm font-medium">Royal Canin Veterinary Diet Renal Support</h5>
+                                <p class="text-xs text-muted-foreground mt-1">Available in several canned textures and flavors specifically designed to entice dogs with poor appetites.</p>
+                            </div>
+                            <div class="rounded-lg border bg-card p-4 text-card-foreground">
+                                <h5 class="text-sm font-medium">Purina Pro Plan Veterinary Diets NF Kidney Function</h5>
+                                <p class="text-xs text-muted-foreground mt-1">Another clinically proven option available in a canned formula.</p>
+                            </div>
+                        </div>
                     </article>
                 </div>
             </main>
@@ -550,8 +621,13 @@
             button.setAttribute('aria-expanded', isExpanded);
         }
 
-        // Set initial states for all submenus
+        // Set initial states for all submenus and integrate with scrollspy
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize scrollspy
+            if (window.HSScrollspy) {
+                window.HSScrollspy.autoInit();
+            }
+            
             // Get the current hash from the URL
             const currentHash = window.location.hash;
             
@@ -562,33 +638,37 @@
             
             // Set active state based on hash
             if (currentHash) {
-                // Remove .active class from all links
-                document.querySelectorAll('a').forEach(link => {
-                    link.classList.remove('bg-accent', 'text-accent-foreground');
-                    link.classList.add('text-muted-foreground', 'hover:bg-accent', 'hover:text-accent-foreground');
-                });
-                
-                // Add .active class to the link with href matching the hash
-                const activeLink = document.querySelector(`a[href="${currentHash}"]`);
-                if (activeLink) {
-                    activeLink.classList.remove('text-muted-foreground', 'hover:bg-accent', 'hover:text-accent-foreground');
-                    activeLink.classList.add('bg-accent', 'text-accent-foreground');
-                    
-                    // Expand parent submenu if needed
-                    const parentSubmenu = activeLink.closest('div[id$="-submenu"]');
-                    if (parentSubmenu && parentSubmenu.classList.contains('hidden')) {
-                        const parentButton = document.querySelector(`button[onclick="toggleSubmenu(this, '${parentSubmenu.id}')"]`);
+                expandSubmenuForActiveSection(currentHash);
+            }
+        });
+
+        // Function to expand submenu when a section becomes active
+        function expandSubmenuForActiveSection(hash) {
+            const activeLink = document.querySelector(`a[href="${hash}"]`);
+            if (activeLink) {
+                // Expand parent submenu if the active link is in a submenu
+                const parentSubmenu = activeLink.closest('div[id$="-submenu"]');
+                if (parentSubmenu && parentSubmenu.classList.contains('hidden')) {
+                    const parentButton = document.querySelector(`button[onclick="toggleSubmenu(this, '${parentSubmenu.id}')"]`);
+                    if (parentButton) {
                         toggleSubmenu(parentButton, parentSubmenu.id);
                     }
                 }
             }
-        });
+        }
 
-        // Update active state on scroll
-        window.addEventListener('scroll', function() {
-            // This would be a more sophisticated implementation to highlight the current section
-            // For this demo, we'll keep it simple, but in a full implementation, you'd check
-            // which section is currently visible in the viewport
+        // Listen for scrollspy events to auto-expand relevant submenus
+        document.addEventListener('scroll', function() {
+            // Get all sections that are currently in viewport
+            const sections = document.querySelectorAll('h2[id], h3[id]');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const isVisible = rect.top >= 0 && rect.top <= window.innerHeight / 2;
+                
+                if (isVisible) {
+                    expandSubmenuForActiveSection('#' + section.id);
+                }
+            });
         });
     </script>
 </body>
