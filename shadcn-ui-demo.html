@@ -92,7 +92,7 @@
 <body class="min-h-screen bg-background font-sans text-foreground antialiased">
     <div class="relative flex min-h-screen flex-col">
         <!-- Sidebar -->
-        <aside class="group/sidebar-wrapper fixed inset-y-0 left-0 z-30 hidden w-64 transition-all duration-300 md:flex md:flex-col" id="sidebar">
+        <aside class="group/sidebar-wrapper fixed top-16 bottom-0 left-0 z-30 hidden w-64 transition-all duration-300 md:flex md:flex-col" id="sidebar">
             <div class="flex flex-col space-y-2 bg-background text-sm shadow-sm border-r overflow-hidden">
                 <!-- Sidebar Header -->
                 <div class="flex h-[60px] shrink-0 items-center border-b px-4">
@@ -247,20 +247,101 @@
         <!-- Mobile Overlay -->
         <div class="fixed inset-0 z-20 bg-black/80 backdrop-blur-sm hidden" id="sidebar-overlay"></div>
 
+        <!-- Universal Sticky Navigation -->
+        <nav class="bg-white shadow-md border-b sticky top-0 z-50 backdrop-blur-sm bg-white/95">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <!-- Logo and Brand -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <a href="https://rmitts.github.io/carmelo-health-records/" class="flex items-center">
+                                <div class="w-8 h-8 bg-health-blue rounded-lg flex items-center justify-center mr-3">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h1 class="text-xl font-semibold text-gray-900">Carmelo's Health Dashboard</h1>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Links -->
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-1">
+                            <a href="https://rmitts.github.io/carmelo-health-records/" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                                Home
+                            </a>
+                            <a href="https://rmitts.github.io/carmelo-health-records/health-overview.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                                Health Overview
+                            </a>
+                            <a href="https://rmitts.github.io/carmelo-health-records/clinical-nutrition-report.html" class="bg-health-blue text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                                Gemini
+                            </a>
+                            <a href="https://rmitts.github.io/carmelo-health-records/melo-claude-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                                Claude
+                            </a>
+                            <a href="https://rmitts.github.io/carmelo-health-records/chatgpt-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                                Chat GPT
+                            </a>
+                            <a href="https://rmitts.github.io/carmelo-health-records/shadcn-ui-demo.html" class="bg-purple-600 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                                shadcn/ui Demo
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button type="button" class="universal-mobile-menu-button bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-health-blue hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-health-blue" aria-controls="universal-mobile-menu" aria-expanded="false">
+                            <span class="sr-only">Open main menu</span>
+                            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div class="md:hidden universal-mobile-menu hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+                    <a href="https://rmitts.github.io/carmelo-health-records/" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                        Home
+                    </a>
+                    <a href="https://rmitts.github.io/carmelo-health-records/health-overview.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                        Health Overview
+                    </a>
+                    <a href="https://rmitts.github.io/carmelo-health-records/clinical-nutrition-report.html" class="bg-health-blue text-white block px-3 py-2 rounded-md text-base font-medium">
+                        Gemini
+                    </a>
+                    <a href="https://rmitts.github.io/carmelo-health-records/melo-claude-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                        Claude
+                    </a>
+                    <a href="https://rmitts.github.io/carmelo-health-records/chatgpt-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                        Chat GPT
+                    </a>
+                    <a href="https://rmitts.github.io/carmelo-health-records/shadcn-ui-demo.html" class="bg-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium">
+                        shadcn/ui Demo
+                    </a>
+                </div>
+            </div>
+        </nav>
+
         <!-- Main Content -->
         <div class="flex flex-col md:pl-64">
-            <!-- Top Navigation -->
-            <header class="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background px-4 lg:px-6">
+            <!-- Secondary Navigation (Breadcrumb) -->
+            <header class="sticky top-16 z-10 flex h-12 items-center gap-4 border-b bg-background px-4 lg:px-6">
                 <button class="md:hidden" id="mobile-toggle">
                     <svg class="h-5 w-5 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 12h18M3 6h18M3 18h18"></path>
                     </svg>
-                    <span class="sr-only">Toggle Menu</span>
+                    <span class="sr-only">Toggle Sidebar</span>
                 </button>
                 <div class="flex w-full items-center gap-2">
-                    <a href="index.html" class="flex items-center gap-2 text-sm font-medium">
+                    <a href="index.html" class="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
                         Building Your Application
-                        <svg class="h-4 w-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="m9 18 6-6-6-6"></path>
                         </svg>
                     </a>
@@ -418,7 +499,19 @@
     </div>
 
     <script>
-        // Mobile menu toggle
+        // Universal navigation mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const universalMobileMenuButton = document.querySelector('.universal-mobile-menu-button');
+            const universalMobileMenu = document.querySelector('.universal-mobile-menu');
+            
+            if (universalMobileMenuButton && universalMobileMenu) {
+                universalMobileMenuButton.addEventListener('click', function() {
+                    universalMobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+
+        // Sidebar mobile menu toggle
         document.getElementById('mobile-toggle').addEventListener('click', function() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
