@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical Nutrition Report - shadcn/ui Version</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'health-blue': '#2563eb',
+                        'health-light': '#eff6ff',
+                        'health-dark': '#1e40af',
+                        border: "hsl(214.3 31.8% 91.4%)",
+                        input: "hsl(214.3 31.8% 91.4%)",
+                        ring: "hsl(222.2 84% 4.9%)",
+                        background: "hsl(0 0% 100%)",
+                        foreground: "hsl(222.2 84% 4.9%)",
+                        primary: {
+                            DEFAULT: "hsl(222.2 47.4% 11.2%)",
+                            foreground: "hsl(210 40% 98%)",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(210 40% 96.1%)",
+                            foreground: "hsl(222.2 47.4% 11.2%)",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(210 40% 96.1%)",
+                            foreground: "hsl(215.4 16.3% 46.9%)",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(210 40% 96.1%)",
+                            foreground: "hsl(222.2 47.4% 11.2%)",
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(0 84.2% 60.2%)",
+                            foreground: "hsl(210 40% 98%)",
+                        },
+                        card: {
+                            DEFAULT: "hsl(0 0% 100%)",
+                            foreground: "hsl(222.2 47.4% 11.2%)",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --radius: 0.5rem;
+            --font-sans: 'Inter', sans-serif;
+        }
+        
+        body {
+            font-feature-settings: "rlig" 1, "calt" 1;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: hsl(215.4 16.3% 85.9%);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: hsl(215.4 16.3% 75.9%);
+        }
+
+        /* Custom styling for code blocks */
+        pre {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-background font-sans text-foreground antialiased">
+    <div class="relative flex min-h-screen flex-col">
+        <!-- Sidebar -->
+        <aside class="group/sidebar-wrapper fixed inset-y-0 left-0 z-30 hidden w-64 transition-all duration-300 md:flex md:flex-col" id="sidebar">
+            <div class="flex flex-col space-y-2 bg-background text-sm shadow-sm border-r overflow-hidden">
+                <!-- Sidebar Header -->
+                <div class="flex h-[60px] shrink-0 items-center border-b px-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 bg-primary rounded-md flex items-center justify-center">
+                            <svg class="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-medium">Carmelo Health Records</span>
+                    </div>
+                </div>
+                
+                <!-- Sidebar Content -->
+                <div class="flex-1 overflow-auto py-2">
+                    <nav class="grid gap-1 px-2">
+                        <div class="px-2 py-2">
+                            <h3 class="mb-2 px-2 text-xs font-semibold tracking-tight">Overview</h3>
+                            <div class="grid gap-1">
+                                <a href="#executive-summary" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium bg-accent text-accent-foreground transition-all">
+                                    <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2H2v10h10V2z"></path>
+                                        <path d="M12 12H2v10h10V12z"></path>
+                                        <path d="M22 2h-10v10h10V2z"></path>
+                                        <path d="M22 12h-10v10h10V12z"></path>
+                                    </svg>
+                                    Executive Summary
+                                </a>
+                                <a href="#analysis-of-clinical-data" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">
+                                    <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+                                        <line x1="2" x2="22" y1="10" y2="10"></line>
+                                    </svg>
+                                    Clinical Data Analysis
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="px-2 py-2">
+                            <h3 class="mb-2 px-2 text-xs font-semibold tracking-tight">Management Principles</h3>
+                            <div class="grid gap-1">
+                                <div class="group">
+                                    <button class="group w-full flex items-center justify-between rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all" onclick="toggleSubmenu(this, 'renal-submenu')">
+                                        <div class="flex items-center">
+                                            <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path>
+                                            </svg>
+                                            Renal Support
+                                        </div>
+                                        <svg class="h-4 w-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m6 9 6 6 6-6"></path>
+                                        </svg>
+                                    </button>
+                                    <div id="renal-submenu" class="hidden grid gap-1 pl-6 pt-1">
+                                        <a href="#renal-stress-principles" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Core Principles</a>
+                                        <a href="#phosphorus-restriction" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Phosphorus Restriction</a>
+                                        <a href="#protein-paradox" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Protein Management</a>
+                                        <a href="#hydration-sodium" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Hydration & Sodium</a>
+                                    </div>
+                                </div>
+
+                                <div class="group">
+                                    <button class="group w-full flex items-center justify-between rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all" onclick="toggleSubmenu(this, 'liver-submenu')">
+                                        <div class="flex items-center">
+                                            <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 13V2l8 4-8 4"></path>
+                                                <path d="M20.55 10.23A9 9 0 1 1 8 4.94"></path>
+                                                <path d="M8 10a5 5 0 1 0 8.9 2.02"></path>
+                                            </svg>
+                                            Hepatic Support
+                                        </div>
+                                        <svg class="h-4 w-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m6 9 6 6 6-6"></path>
+                                        </svg>
+                                    </button>
+                                    <div id="liver-submenu" class="hidden grid gap-1 pl-6 pt-1">
+                                        <a href="#hepatic-function-support" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Basic Principles</a>
+                                        <a href="#liver-protein" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Protein Quality</a>
+                                        <a href="#fat-copper" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Fat & Copper Restrictions</a>
+                                    </div>
+                                </div>
+
+                                <div class="group">
+                                    <button class="group w-full flex items-center justify-between rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all" onclick="toggleSubmenu(this, 'coexisting-submenu')">
+                                        <div class="flex items-center">
+                                            <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                                <path d="M2 12h20"></path>
+                                            </svg>
+                                            Co-Existing Conditions
+                                        </div>
+                                        <svg class="h-4 w-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m6 9 6 6 6-6"></path>
+                                        </svg>
+                                    </button>
+                                    <div id="coexisting-submenu" class="hidden grid gap-1 pl-6 pt-1">
+                                        <a href="#co-occurring-conditions" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Overview</a>
+                                        <a href="#low-fat-mandate" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Post-Cholecystectomy</a>
+                                        <a href="#cardiac-support" class="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">Cardiac Support</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-2 py-2">
+                            <h3 class="mb-2 px-2 text-xs font-semibold tracking-tight">Recommendations</h3>
+                            <div class="grid gap-1">
+                                <a href="#synthesized-plan" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">
+                                    <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1-4 0V5a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v12a2 2 0 1 1-4 0V7a1 1 0 0 1 1-1h3"></path>
+                                        <path d="M8 8a2 2 0 1 1 4 0v8a2 2 0 1 1-4 0z"></path>
+                                        <path d="M18 12a2 2 0 1 0-4 0v6"></path>
+                                    </svg>
+                                    Nutrition Plan
+                                </a>
+                                <a href="#nutraceuticals-supplements" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">
+                                    <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="m4.9 4.9 14.2 14.2"></path>
+                                    </svg>
+                                    Supplements
+                                </a>
+                                <a href="#diet-recommendations" class="group flex items-center rounded-md px-3 py-2 text-xs font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all">
+                                    <svg class="mr-2 h-4 w-4 text-foreground/70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="8" cy="21" r="1"></circle>
+                                        <circle cx="19" cy="21" r="1"></circle>
+                                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                                    </svg>
+                                    Specific Products
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- Sidebar Footer -->
+                <div class="mt-auto border-t px-4 py-3">
+                    <div class="flex items-center gap-3">
+                        <div class="h-8 w-8 rounded-full bg-secondary flex items-center justify-center">
+                            <span class="text-xs font-medium">C</span>
+                        </div>
+                        <div>
+                            <p class="text-xs font-medium">Carmelo</p>
+                            <p class="text-xs text-muted-foreground">15-year-old canine</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Overlay -->
+        <div class="fixed inset-0 z-20 bg-black/80 backdrop-blur-sm hidden" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col md:pl-64">
+            <!-- Top Navigation -->
+            <header class="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background px-4 lg:px-6">
+                <button class="md:hidden" id="mobile-toggle">
+                    <svg class="h-5 w-5 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12h18M3 6h18M3 18h18"></path>
+                    </svg>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+                <div class="flex w-full items-center gap-2">
+                    <a href="index.html" class="flex items-center gap-2 text-sm font-medium">
+                        Building Your Application
+                        <svg class="h-4 w-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                    </a>
+                    <span class="text-sm font-medium">Clinical Nutrition Report</span>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-6 md:gap-8">
+                <div class="mx-auto w-full max-w-4xl">
+                    <!-- Report Content -->
+                    <article class="prose dark:prose-invert prose-slate max-w-none">
+                        <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight" id="executive-summary">A Comprehensive Clinical Nutrition Report for a Senior Canine</h1>
+                        
+                        <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-8" id="executive-summary">Executive Summary: A Unified Dietary Strategy for Carmelo</h2>
+                        <p>This report provides a comprehensive, evidence-based analysis and set of dietary recommendations for Carmelo, a 15-year-old, 55 lb mixed-breed canine. The recommendations are based on a thorough review of his recent blood chemistry panel and the established veterinary medical literature concerning the nutritional management of his complex clinical presentation.</p>
+                        
+                        <p>Carmelo's health profile is characterized by concurrent stress on multiple organ systems: renal stress, indicated by azotemia (elevated BUN and Creatinine); hepatic stress, indicated by significantly elevated liver enzymes; a sensitive digestive system resulting from a prior cholecystectomy (gallbladder removal) and splenectomy, which mandates a low-fat diet; and a stable cardiac condition requiring prudent sodium management.</p>
+                        
+                        <div class="my-6 rounded-lg border bg-muted p-4">
+                            <h4 class="text-base font-medium">Core Dietary Objectives:</h4>
+                            <p class="text-sm text-muted-foreground">The core objectives of the recommended dietary plan are as follows:</p>
+                            <ol class="mt-4 pl-5 space-y-2">
+                                <li class="text-sm"><span class="font-medium">Reduce Kidney Workload:</span> The foremost priority is to lessen the metabolic burden on the kidneys. This is achieved primarily through the restriction of dietary phosphorus, which is the most critical intervention for preserving renal function.</li>
+                                <li class="text-sm"><span class="font-medium">Support Liver Function:</span> The diet must provide easily digestible nutrients to minimize hepatic workload. This includes avoiding excess fat and copper, which can be detrimental to a stressed liver.</li>
+                                <li class="text-sm"><span class="font-medium">Accommodate Digestive Limitations:</span> Adherence to a strict low-fat profile is non-negotiable due to the absence of a gallbladder.</li>
+                                <li class="text-sm"><span class="font-medium">Maintain Cardiovascular Stability:</span> The dietary strategy incorporates controlled sodium intake, a principle that dually benefits both renal and cardiac health.</li>
+                                <li class="text-sm"><span class="font-medium">Preserve Lean Body Mass:</span> In a senior canine, preventing muscle wasting (sarcopenia) is crucial.</li>
+                            </ol>
+                        </div>
+
+                        <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-12" id="analysis-of-clinical-data">Analysis of Clinical Data: Interpreting Carmelo's Bloodwork</h2>
+                        <p>A patient's blood chemistry panel provides a critical window into the functional status of their internal organs and metabolic processes. For Carmelo, the Canine Diagnostic Panel performed on September 11, 2025, is the clinical cornerstone upon which all nutritional recommendations are built.</p>
+
+                        <div class="relative my-6 overflow-x-auto rounded-lg border">
+                            <table class="w-full text-left text-sm">
+                                <caption class="bg-muted px-6 py-3 text-left text-sm font-medium">
+                                    Summary of Abnormal Blood Chemistry Values for Carmelo (09/11/2025)
+                                </caption>
+                                <thead class="bg-muted text-xs uppercase">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">Parameter</th>
+                                        <th scope="col" class="px-6 py-3">Carmelo's Result</th>
+                                        <th scope="col" class="px-6 py-3">Reference Range</th>
+                                        <th scope="col" class="px-6 py-3">Clinical Significance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b bg-card">
+                                        <td class="px-6 py-3 font-medium">BUN</td>
+                                        <td class="px-6 py-3">
+                                            <span class="inline-flex items-center rounded-full border border-destructive/30 bg-destructive/10 px-2 py-0.5 text-xs font-medium text-destructive">
+                                                43 H
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-3">7 - 30 mg/dL</td>
+                                        <td class="px-6 py-3 text-xs"><span class="font-medium">Azotemia.</span> Blood Urea Nitrogen is a primary waste product of protein metabolism.</td>
+                                    </tr>
+                                    <tr class="border-b bg-card/50">
+                                        <td class="px-6 py-3 font-medium">CREATININE</td>
+                                        <td class="px-6 py-3">
+                                            <span class="inline-flex items-center rounded-full border border-destructive/30 bg-destructive/10 px-2 py-0.5 text-xs font-medium text-destructive">
+                                                2.12 H
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-3">0.6 - 1.6 mg/dL</td>
+                                        <td class="px-6 py-3 text-xs"><span class="font-medium">Azotemia.</span> Creatinine is a waste product from muscle metabolism.</td>
+                                    </tr>
+                                    <tr class="border-b bg-card">
+                                        <td class="px-6 py-3 font-medium">PHOSPHORUS</td>
+                                        <td class="px-6 py-3">4.2</td>
+                                        <td class="px-6 py-3">2.5 - 6.0 mg/dL</td>
+                                        <td class="px-6 py-3 text-xs"><span class="font-medium">Normal, but Deceptively So.</span> Failing kidneys struggle to excrete phosphorus.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p>The pattern of these results tells a story of a system-wide metabolic "traffic jam." The kidneys, the body's primary filtration plant, are failing to clear waste products from the blood, as evidenced by the high BUN and Creatinine. This places a greater detoxification burden on the liver, which is simultaneously showing signs of significant cellular stress and leakage (high ALT, ALP, AST, GGT).</p>
+
+                        <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-12" id="renal-stress-principles">Core Dietary Principles for Managing Renal Stress</h2>
+                        <p>Nutritional management is the cornerstone of therapy for dogs with chronic kidney disease (CKD) or renal stress. The primary goals are to minimize the clinical signs of uremia, slow the progression of the disease, and maintain adequate nutrition to preserve body condition and quality of life.</p>
+
+                        <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight mt-8" id="phosphorus-restriction">The Paramount Importance of Phosphorus Restriction</h3>
+                        <p>The restriction of dietary phosphorus is the most critical, evidence-based nutritional intervention known to slow the progression of CKD in dogs. The scientific consensus is robust on this point, with some studies suggesting that phosphorus control is even more impactful on longevity than protein restriction.</p>
+
+                        <ul class="my-6 ml-6 list-disc [&>li]:mt-2">
+                            <li>
+                                <strong>Initiate Early:</strong> This intervention must be initiated early. Waiting for blood phosphorus levels to become elevated (hyperphosphatemia) means that significant, irreversible damage has likely already occurred due to the prolonged effects of high PTH.
+                            </li>
+                            <li>
+                                <strong>Therapeutic Diet is Essential:</strong> To achieve this, a therapeutic renal diet is essential. Standard adult maintenance dog foods contain high levels of phosphorus, often around 1.5 g/1000 kcal or more, as phosphorus is abundant in common protein sources like meat and bone meal.
+                            </li>
+                        </ul>
+
+                        <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight mt-8" id="protein-paradox">The Protein Paradox: Balancing High-Quality Intake with Toxin Reduction</h3>
+                        <div class="my-6 rounded-lg border bg-card p-4 text-card-foreground">
+                            <p class="text-sm font-medium">The goal is not simply a "low protein" diet, but rather a diet that provides a <em>moderated level of exceptionally high-quality, highly digestible protein</em>. This represents a careful balancing act between meeting the body's needs and reducing the accumulation of metabolic waste.</p>
+                        </div>
+
+                        <p><strong>The rationale for moderating protein intake is to control uremia.</strong> The breakdown of dietary protein produces nitrogenous waste products, most notably urea, which is measured in the blood as BUN. When the kidneys' filtering capacity is diminished, these uremic toxins accumulate in the bloodstream, making the dog feel ill.</p>
+
+                        <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight mt-8" id="hydration-sodium">The Critical Role of Hydration and Sodium Management</h3>
+                        <p>Maintaining adequate hydration is absolutely essential for any dog with renal insufficiency. As the kidneys lose their ability to concentrate urine, they must excrete waste products in a larger volume of more dilute urine to compensate. This leads to increased urination (polyuria) and, consequently, increased thirst (polydipsia).</p>
+                        
+                        <p>Therefore, unlimited access to fresh, clean water is non-negotiable. To further enhance total water intake, feeding a canned or wet food diet is strongly recommended over dry kibble. Canned foods typically contain around 75-80% moisture, which contributes significantly to the dog's daily hydration needs and helps to continuously flush the renal system.</p>
+
+                        <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-12" id="hepatic-function-support">Nutritional Support for Compromised Hepatic Function</h2>
+                        <p>The liver is a metabolic powerhouse, responsible for hundreds of vital functions, including protein synthesis, detoxification, and the metabolism of fats and carbohydrates. When liver enzymes are elevated, as seen in Carmelo's bloodwork, it signals cellular stress or damage.</p>
+
+                        <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight mt-8" id="liver-protein">Protein Quality vs. Quantity: Dispelling Myths for Liver Health</h3>
+                        <p>A common misconception is that all dogs with elevated liver enzymes require a protein-restricted diet. This is incorrect and can be detrimental. Protein restriction is only indicated for patients with a specific, severe complication of liver failure known as Hepatic Encephalopathy (HE).</p>
+
+                        <div class="my-6">
+                            <div class="flex flex-col space-y-3">
+                                <div class="flex items-center space-x-4">
+                                    <span class="flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10 text-destructive">
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m5.5 5.5 13 13"></path>
+                                            <path d="M18.5 5.5a13 13 0 0 0-13 13"></path>
+                                        </svg>
+                                    </span>
+                                    <div>
+                                        <h4 class="text-sm font-medium">Myth: All liver patients need low protein</h4>
+                                        <p class="text-xs text-muted-foreground">For patients without HE, adequate protein intake is crucial for liver regeneration.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-600">
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 6 9 17l-5-5"></path>
+                                        </svg>
+                                    </span>
+                                    <div>
+                                        <h4 class="text-sm font-medium">Fact: Protein quality matters most</h4>
+                                        <p class="text-xs text-muted-foreground">High-quality proteins produce less ammonia and are better for liver health.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight mt-8" id="fat-copper">Fat and Copper: Essential Restrictions for Hepatic Health</h3>
+                        <ul class="my-6 ml-6 list-disc [&>li]:mt-2">
+                            <li>
+                                <strong>Fat Restriction:</strong> A low-fat diet is a cornerstone of nutritional support for most forms of liver disease, and it is an absolute requirement for Carmelo due to his cholecystectomy.
+                            </li>
+                            <li>
+                                <strong>Copper Restriction:</strong> Copper is an essential trace mineral, but in some dogs, a genetic defect or chronic liver disease can lead to an inability to excrete copper properly.
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('flex');
+            overlay.classList.toggle('hidden');
+            
+            // Prevent scrolling when sidebar is open
+            document.body.classList.toggle('overflow-hidden');
+        });
+
+        // Sidebar overlay close
+        document.getElementById('sidebar-overlay').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            
+            sidebar.classList.add('hidden');
+            sidebar.classList.remove('flex');
+            overlay.classList.add('hidden');
+            
+            // Re-enable scrolling
+            document.body.classList.remove('overflow-hidden');
+        });
+
+        // Expand/collapse submenu sections
+        function toggleSubmenu(button, submenuId) {
+            const submenu = document.getElementById(submenuId);
+            const icon = button.querySelector('svg:last-child');
+            
+            submenu.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+            
+            // Update aria-expanded attribute for accessibility
+            const isExpanded = !submenu.classList.contains('hidden');
+            button.setAttribute('aria-expanded', isExpanded);
+        }
+
+        // Set initial states for all submenus
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the current hash from the URL
+            const currentHash = window.location.hash;
+            
+            // For demonstration, expand the renal submenu by default
+            if (!currentHash) {
+                toggleSubmenu(document.querySelector('button[onclick="toggleSubmenu(this, \'renal-submenu\')"]'), 'renal-submenu');
+            }
+            
+            // Set active state based on hash
+            if (currentHash) {
+                // Remove .active class from all links
+                document.querySelectorAll('a').forEach(link => {
+                    link.classList.remove('bg-accent', 'text-accent-foreground');
+                    link.classList.add('text-muted-foreground', 'hover:bg-accent', 'hover:text-accent-foreground');
+                });
+                
+                // Add .active class to the link with href matching the hash
+                const activeLink = document.querySelector(`a[href="${currentHash}"]`);
+                if (activeLink) {
+                    activeLink.classList.remove('text-muted-foreground', 'hover:bg-accent', 'hover:text-accent-foreground');
+                    activeLink.classList.add('bg-accent', 'text-accent-foreground');
+                    
+                    // Expand parent submenu if needed
+                    const parentSubmenu = activeLink.closest('div[id$="-submenu"]');
+                    if (parentSubmenu && parentSubmenu.classList.contains('hidden')) {
+                        const parentButton = document.querySelector(`button[onclick="toggleSubmenu(this, '${parentSubmenu.id}')"]`);
+                        toggleSubmenu(parentButton, parentSubmenu.id);
+                    }
+                }
+            }
+        });
+
+        // Update active state on scroll
+        window.addEventListener('scroll', function() {
+            // This would be a more sophisticated implementation to highlight the current section
+            // For this demo, we'll keep it simple, but in a full implementation, you'd check
+            // which section is currently visible in the viewport
+        });
+    </script>
+</body>
+</html>
