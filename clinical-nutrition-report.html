@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinical Nutrition Report for Carmelo</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'health-blue': '#2563eb',
+                        'health-light': '#eff6ff',
+                        'health-dark': '#1e40af'
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -52,22 +65,84 @@
 </head>
 <body class="text-slate-700">
 
-    <!-- Header -->
-    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 border-b border-slate-200">
+    <!-- Universal Sticky Navigation -->
+    <nav class="bg-white shadow-md border-b sticky top-0 z-50 backdrop-blur-sm bg-white/95">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo and Brand -->
                 <div class="flex items-center">
-                    <svg class="h-8 w-8 text-sky-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                    </svg>
-                    <span class="ml-3 text-xl font-bold text-slate-800">Clinical Nutrition Report</span>
+                    <div class="flex-shrink-0">
+                        <a href="https://rmitts.github.io/carmelo-health-records/" class="flex items-center">
+                            <div class="w-8 h-8 bg-health-blue rounded-lg flex items-center justify-center mr-3">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h1 class="text-xl font-semibold text-gray-900">Carmelo's Health Dashboard</h1>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="flex items-center">
-                    <span class="hidden md:inline text-sm font-medium text-slate-500 mr-4">For: Carmelo</span>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-1">
+                        <a href="https://rmitts.github.io/carmelo-health-records/" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                            Home
+                        </a>
+                        <a href="https://rmitts.github.io/carmelo-health-records/health-overview.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                            Health Overview
+                        </a>
+                        <a href="https://rmitts.github.io/carmelo-health-records/clinical-nutrition-report.html" class="bg-health-blue text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                            Gemini
+                        </a>
+                        <a href="https://rmitts.github.io/carmelo-health-records/melo-claude-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                            Claude
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="mobile-menu-button bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-health-blue hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-health-blue" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
-    </header>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden mobile-menu hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+                <a href="https://rmitts.github.io/carmelo-health-records/" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                    Home
+                </a>
+                <a href="https://rmitts.github.io/carmelo-health-records/health-overview.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                    Health Overview
+                </a>
+                <a href="https://rmitts.github.io/carmelo-health-records/clinical-nutrition-report.html" class="bg-health-blue text-white block px-3 py-2 rounded-md text-base font-medium">
+                    Gemini
+                </a>
+                <a href="https://rmitts.github.io/carmelo-health-records/melo-claude-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
+                    Claude
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="bg-gradient-to-r from-health-blue to-health-dark text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold">Clinical Nutrition Report</h1>
+                <p class="mt-2 text-health-light opacity-90">Comprehensive Analysis for Carmelo</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -477,6 +552,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Universal mobile menu toggle
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
             const content = document.getElementById('report-content');
             const desktopNavLinksContainer = document.getElementById('nav-links');
             const headings = content.querySelectorAll('h2, h3');
