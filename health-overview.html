@@ -4,251 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Overview - Carmelo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'health-blue': '#2563eb',
-                        'health-light': '#eff6ff',
-                        'health-dark': '#1e40af'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --danger-color: #ef4444;
-            --dark-color: #1f2937;
-            --light-color: #f8fafc;
-            --border-color: #e2e8f0;
-            --text-primary: #1f2937;
-            --text-secondary: #64748b;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--light-color);
-        }
-
-        .metric-card {
-            transition: all 0.2s ease-in-out;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .status-badge {
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.25rem 0.5rem;
-            border-radius: 9999px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .status-elevated {
-            background-color: #fef3c7;
-            color: #92400e;
-            border: 1px solid #f59e0b;
-        }
-
-        .status-severe {
-            background-color: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #ef4444;
-        }
-
-        .critical-alert {
-            border-left: 4px solid var(--danger-color);
-            background: linear-gradient(120deg, #fef2f2 0%, #fee2e2 100%);
-        }
-
-        .monitoring-item {
-            border-left: 3px solid var(--primary-color);
-            transition: border-color 0.2s ease;
-        }
-
-        .monitoring-item:hover {
-            border-left-color: var(--accent-color);
-        }
-
-        .back-to-home {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            opacity: 0.9;
-            transition: opacity 0.2s;
-            padding: 0.5rem;
-            border-radius: 0.375rem;
-            z-index: 10;
-        }
-        
-        .back-to-home:hover {
-            opacity: 1;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .header {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .header h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .header .subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            position: relative;
-        }
-
-        .print-btn {
-            background-color: #e5e7eb;
-            color: #374151;
-            border: 1px solid #d1d5db;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .print-btn:hover {
-            background-color: #d1d5db;
-        }
-
-        @media (max-width: 768px) {
-            .metrics-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .header h1 {
-                font-size: 1.25rem;
-            }
-
-            .back-to-home {
-                position: static;
-                transform: none;
-                margin-bottom: 1rem;
-            }
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script src="tailwind.config.js"></script>
 </head>
-<body>
-    <!-- Universal Sticky Navigation -->
-    <nav class="bg-white shadow-md border-b sticky top-0 z-50 backdrop-blur-sm bg-white/95">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo and Brand -->
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <a href="https://rmitts.github.io/carmelo-health-records/" class="flex items-center">
-                            <div class="w-8 h-8 bg-health-blue rounded-lg flex items-center justify-center mr-3">
-                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h1 class="text-xl font-semibold text-gray-900">Carmelo's Health Dashboard</h1>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Navigation Links -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-1">
-                        <a href="https://rmitts.github.io/carmelo-health-records/" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                            Home
-                        </a>
-                        <a href="https://rmitts.github.io/carmelo-health-records/health-overview.html" class="bg-health-blue text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                            Health Overview
-                        </a>
-                        <a href="https://rmitts.github.io/carmelo-health-records/clinical-nutrition-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                            Gemini
-                        </a>
-                        <a href="https://rmitts.github.io/carmelo-health-records/melo-claude-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                            Claude
-                        </a>
-                        <a href="https://rmitts.github.io/carmelo-health-records/chatgpt-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                            Chat GPT
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button type="button" class="mobile-menu-button bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-health-blue hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-health-blue" aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile menu -->
-        <div class="md:hidden mobile-menu hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-                <a href="https://rmitts.github.io/carmelo-health-records/" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
-                    Home
-                </a>
-                <a href="https://rmitts.github.io/carmelo-health-records/health-overview.html" class="bg-health-blue text-white block px-3 py-2 rounded-md text-base font-medium">
-                    Health Overview
-                </a>
-                <a href="https://rmitts.github.io/carmelo-health-records/clinical-nutrition-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
-                    Gemini
-                </a>
-                <a href="https://rmitts.github.io/carmelo-health-records/melo-claude-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
-                    Claude
-                </a>
-                <a href="https://rmitts.github.io/carmelo-health-records/chatgpt-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">
-                    Chat GPT
-                </a>
-            </div>
-        </div>
-    </nav>
-    
+<body class="bg-gray-50 text-gray-800">
+    <div id="main-nav"></div>
+
     <!-- Page Header -->
     <div class="bg-gradient-to-r from-health-blue to-health-dark text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -260,14 +21,14 @@
     </div>
 
     <main class="py-8">
-        <div class="container">
+        <div class="max-w-6xl mx-auto px-4">
             <!-- Header with Print Button -->
             <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
                 <div class="bg-blue-50 px-4 py-2 rounded-lg">
                     <span class="text-sm font-semibold text-blue-700">🐕 Carmelo</span>
                     <span class="text-sm text-blue-600 ml-2">Norwegian Elkhound Mix • 15 years • 55 lbs</span>
                 </div>
-                <button class="print-btn" onclick="window.print()">
+                <button class="bg-gray-200 text-gray-800 border border-gray-300 px-4 py-2 rounded-md text-sm font-medium cursor-pointer transition-all hover:bg-gray-300" onclick="window.print()">
                     <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2z"/>
                     </svg>
@@ -278,21 +39,21 @@
             <!-- Critical Metrics Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <!-- Kidney Function Card -->
-                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-orange-500 metric-card">
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-orange-500 transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-xl">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">🫘 Kidney Function</h3>
                     <div class="space-y-3">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-medium text-gray-600">BUN:</span>
                             <div class="text-right">
                                 <span class="font-semibold text-gray-800">43 mg/dL</span>
-                                <span class="status-badge status-elevated ml-2">Elevated</span>
+                                <span class="ml-2 text-xs font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-500">Elevated</span>
                             </div>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-medium text-gray-600">Creatinine:</span>
                             <div class="text-right">
                                 <span class="font-semibold text-gray-800">2.12 mg/dL</span>
-                                <span class="status-badge status-elevated ml-2">Elevated</span>
+                                <span class="ml-2 text-xs font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-500">Elevated</span>
                             </div>
                         </div>
                     </div>
@@ -300,21 +61,21 @@
                 </div>
 
                 <!-- Liver Function Card -->
-                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500 metric-card">
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500 transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-xl">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">🫀 Liver Function</h3>
                     <div class="space-y-3">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-medium text-gray-600">ALT:</span>
                             <div class="text-right">
                                 <span class="font-semibold text-gray-800">308 IU/L</span>
-                                <span class="status-badge status-severe ml-2">Severe</span>
+                                <span class="ml-2 text-xs font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider bg-red-100 text-red-800 border border-red-500">Severe</span>
                             </div>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-medium text-gray-600">ALP:</span>
                             <div class="text-right">
                                 <span class="font-semibold text-gray-800">495 IU/L</span>
-                                <span class="status-badge status-severe ml-2">Severe</span>
+                                <span class="ml-2 text-xs font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider bg-red-100 text-red-800 border border-red-500">Severe</span>
                             </div>
                         </div>
                     </div>
@@ -322,21 +83,21 @@
                 </div>
 
                 <!-- Other Concerns Card -->
-                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500 metric-card">
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500 transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-xl">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">⚠️ Other Concerns</h3>
                     <div class="space-y-3">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-medium text-gray-600">Calcium:</span>
                             <div class="text-right">
                                 <span class="font-semibold text-gray-800">13.3 mg/dL</span>
-                                <span class="status-badge status-elevated ml-2">Elevated</span>
+                                <span class="ml-2 text-xs font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-500">Elevated</span>
                             </div>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-medium text-gray-600">Cholesterol:</span>
                             <div class="text-right">
                                 <span class="font-semibold text-gray-800">461 mg/dL</span>
-                                <span class="status-badge status-elevated ml-2">Elevated</span>
+                                <span class="ml-2 text-xs font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-500">Elevated</span>
                             </div>
                         </div>
                     </div>
@@ -345,7 +106,7 @@
             </div>
 
             <!-- Critical Action Items -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-8 critical-alert">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8 border-l-4 border-red-500 bg-gradient-to-r from-red-50 to-red-100">
                 <h4 class="flex items-center text-lg font-semibold text-red-700 mb-4">
                     🚨 Critical Action Items
                 </h4>
@@ -373,7 +134,7 @@
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h3 class="text-lg font-semibold text-gray-800 mb-6">📅 Monitoring Schedule</h3>
                 <div class="space-y-4">
-                    <div class="bg-blue-50 p-4 rounded-lg monitoring-item">
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-[3px] border-health-blue transition-colors hover:border-blue-500">
                         <div class="flex justify-between items-start flex-wrap gap-2">
                             <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
                                 Every 3-6 months
@@ -384,7 +145,7 @@
                         </div>
                     </div>
                     
-                    <div class="bg-green-50 p-4 rounded-lg monitoring-item">
+                    <div class="bg-green-50 p-4 rounded-lg border-l-[3px] border-green-500 transition-colors hover:border-green-600">
                         <div class="flex justify-between items-start flex-wrap gap-2">
                             <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
                                 Every 3-6 months
@@ -395,7 +156,7 @@
                         </div>
                     </div>
                     
-                    <div class="bg-purple-50 p-4 rounded-lg monitoring-item">
+                    <div class="bg-purple-50 p-4 rounded-lg border-l-[3px] border-purple-500 transition-colors hover:border-purple-600">
                         <div class="flex justify-between items-start flex-wrap gap-2">
                             <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">
                                 Monthly
@@ -406,7 +167,7 @@
                         </div>
                     </div>
                     
-                    <div class="bg-yellow-50 p-4 rounded-lg monitoring-item">
+                    <div class="bg-yellow-50 p-4 rounded-lg border-l-[3px] border-yellow-500 transition-colors hover:border-yellow-600">
                         <div class="flex justify-between items-start flex-wrap gap-2">
                             <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded">
                                 As needed
@@ -452,6 +213,7 @@
         </div>
     </main>
 
+    <script src="js/main.js"></script>
     <script>
         // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
@@ -474,17 +236,6 @@
         window.addEventListener('afterprint', function() {
             // Show interactive elements after printing
             document.querySelectorAll('.print-btn').forEach(btn => btn.style.display = 'inline-flex');
-        });
-
-        // Add smooth hover animations
-        document.querySelectorAll('.metric-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.boxShadow = '0 8px 25px -5px rgba(0, 0, 0, 0.1)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-            });
         });
     </script>
 </body>

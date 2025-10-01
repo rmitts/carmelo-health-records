@@ -4,69 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chat GPT Report - Diet Recommendations</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'health-blue': '#2563eb',
-            'health-light': '#eff6ff',
-            'health-dark': '#1e40af'
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    /* Content spacing for section headings so anchor links account for sticky nav */
-    .anchor-offset { scroll-margin-top: 110px; }
-  </style>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <script src="tailwind.config.js"></script>
 </head>
 <body class="bg-gray-50 text-slate-800">
-  <!-- Universal Sticky Navigation -->
-  <nav class="bg-white shadow-md border-b sticky top-0 z-50 backdrop-blur-sm bg-white/95">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <div class="flex items-center">
-          <a href="https://rmitts.github.io/carmelo-health-records/" class="flex items-center">
-            <div class="w-8 h-8 bg-health-blue rounded-lg flex items-center justify-center mr-3">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </div>
-            <h1 class="text-lg sm:text-xl font-semibold text-gray-900">Carmelo's Health Dashboard</h1>
-          </a>
-        </div>
-        <div class="hidden md:block">
-          <div class="ml-10 flex items-baseline space-x-1">
-            <a href="https://rmitts.github.io/carmelo-health-records/" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a href="https://rmitts.github.io/carmelo-health-records/health-overview.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium">Health Overview</a>
-            <a href="https://rmitts.github.io/carmelo-health-records/clinical-nutrition-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium">Gemini</a>
-            <a href="https://rmitts.github.io/carmelo-health-records/melo-claude-report.html" class="text-gray-700 hover:text-health-blue hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium">Claude</a>
-            <a href="https://rmitts.github.io/carmelo-health-records/chatgpt-report.html" class="bg-health-blue text-white px-3 py-2 rounded-md text-sm font-medium">Chat GPT</a>
-          </div>
-        </div>
-        <div class="md:hidden">
-          <button type="button" class="mobile-menu-button bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-health-blue hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-health-blue" aria-controls="mobile-menu" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="md:hidden mobile-menu hidden">
-      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-        <a href="https://rmitts.github.io/carmelo-health-records/" class="block px-3 py-2 rounded-md text-base font-medium">Home</a>
-        <a href="https://rmitts.github.io/carmelo-health-records/health-overview.html" class="block px-3 py-2 rounded-md text-base font-medium">Health Overview</a>
-        <a href="https://rmitts.github.io/carmelo-health-records/clinical-nutrition-report.html" class="block px-3 py-2 rounded-md text-base font-medium">Gemini</a>
-        <a href="https://rmitts.github.io/carmelo-health-records/melo-claude-report.html" class="block px-3 py-2 rounded-md text-base font-medium">Claude</a>
-        <a href="https://rmitts.github.io/carmelo-health-records/chatgpt-report.html" class="block px-3 py-2 rounded-md text-base font-medium bg-health-blue text-white">Chat GPT</a>
-      </div>
-    </div>
-  </nav>
+  <div id="main-nav"></div>
 
   <!-- Page Header -->
   <section class="bg-gradient-to-r from-health-blue to-health-dark text-white">
@@ -92,7 +34,7 @@
       <!-- Main content -->
       <main class="lg:col-span-9">
         <!-- Section template with accordion -->
-        <section id="overview" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
+        <section id="overview" class="scroll-mt-28 bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
           <button class="accordion w-full flex items-center justify-between text-left">
             <span class="text-xl font-semibold">Overview</span>
             <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -102,7 +44,7 @@
           </div>
         </section>
 
-        <section id="phosphorus" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
+        <section id="phosphorus" class="scroll-mt-28 bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
           <button class="accordion w-full flex items-center justify-between text-left">
             <span class="text-xl font-semibold">Limit Phosphorus</span>
             <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -111,239 +53,12 @@
             <p>Phosphorus restriction is critical for kidney health. Dogs with kidney disease gradually lose the ability to excrete phosphorus, so excess phosphorus in the diet builds up and can further damage kidneys. Reducing dietary phosphorus has been shown to slow the progression of kidney disease and prolong lifespan. Many therapeutic renal diets are formulated with low phosphorus levels for this reason. Likewise, controlling phosphorus benefits the liver by reducing the workload on that organ. Practically, this means avoiding high-phosphorus foods (like organ meats, dairy, and bone meal) and choosing a diet specifically designed to be phosphorus-restricted.</p>
           </div>
         </section>
-
-        <section id="protein" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Moderate, High-Quality Protein (Not "High-Protein" or "Zero-Protein")</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 text-slate-700 space-y-4">
-            <p>Contrary to some myths, you should not eliminate protein entirely, but you do want to moderate the amount and choose high-quality sources. Protein metabolism produces nitrogenous wastes (like urea) that kidneys must filter, so excessive protein can worsen kidney strain and contribute to uremic toxins. Most kidney-support diets use a reduced but adequate protein content – just enough to maintain muscle and immune function, but not so much that it creates excess waste. Similarly, in liver disease, protein isn't universally forbidden: unless a dog has severe liver dysfunction with signs of hepatic encephalopathy (neurologic signs from toxin buildup), severely restricting protein is usually unnecessary and can even be harmful. In fact, dogs with stable liver disease often need good protein for healing and to prevent muscle wasting.</p>
-            <p>The type of protein matters too – highly digestible, "clean" proteins are preferred. Lean poultry (chicken/turkey breast), cooked eggs, or cottage cheese are excellent protein sources because they are biologically valuable and produce fewer toxins. There is no blanket rule that "chicken is bad" – in reality, lean white-meat chicken is often recommended as a well-tolerated, low-copper protein for dogs with liver issues. Unless your individual dog has a specific sensitivity or allergy to chicken, there's no medical reason to avoid it. The key is that whatever protein is in the diet should be in controlled quantity and high quality (supplying all essential amino acids). Avoid large amounts of red meat or animal organs, as these can be harder to metabolize and (in liver patients) can contribute to higher ammonia levels. Bottom line: feed a moderate amount of protein (per vet guidance) from digestible sources – enough to sustain your dog's health but not so much that it overloads the compromised kidneys or liver.</p>
-          </div>
-        </section>
-
-        <section id="fat-carbs" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Low Fat & Easily Digestible Carbohydrates</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 text-slate-700 space-y-4">
-            <p>Given that your dog no longer has a gallbladder and has a sensitive stomach, a low-fat diet is essential. The gallbladder normally stores bile to help digest fats; after removal, large fatty meals can't be handled as well, often leading to digestive upset or diarrhea due to bile acids dumping into the intestine. Research in dogs (and humans) post-gallbladder surgery shows that high-fat diets can cause bile acid malabsorption and gastrointestinal distress, whereas a low-fat diet is much better tolerated. Veterinarians strongly recommend feeding low-fat meals to dogs without a gallbladder. Look for diets labeled "GI low fat" or "low fat veterinary diet," or those with predominantly lean protein sources. As a rule of thumb, avoid fatty meats, poultry skin, butter/oil, or greasy treats.</p>
-            <p>Instead, the diet's calories should be supplemented with easily digestible carbohydrates (since we're limiting both protein and fat). Carbohydrates like cooked rice, oatmeal, pasta, pumpkin, or potato are gentle on the stomach and provide energy without taxing the liver or kidneys. These carbs can make up a good portion of the diet to maintain your dog's weight and energy. A diet "low in fat, low to moderate in protein, and with easily digested carbs is the goal" for dogs with combined liver/kidney problems. This approach will reduce gastrointestinal stress and ensure your dog gets sufficient calories in a form he can handle.</p>
-          </div>
-        </section>
-
-        <section id="sodium" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Restrict Sodium</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 text-slate-700 space-y-4">
-            <p>Lower sodium (salt) intake is recommended for both kidney and liver health. High sodium can contribute to high blood pressure and fluid retention, which further damages the kidneys and can worsen any liver-related fluid buildup. Dogs with kidney disease often struggle to stay hydrated and may be prone to hypertension; excess salt in the diet makes them drink more and can dehydrate them or raise blood pressure. Likewise, if a dog's liver function is compromised (especially if cirrhosis or ascites is present), too much sodium can lead to abdominal fluid retention. Therapeutic renal and hepatic diets are typically sodium-restricted for these reasons. In practical terms: avoid feeding salty snacks or human foods (no salted meats, chips, cheese, etc.), and choose dog foods that are designated as low-sodium. Keeping sodium on the lower end helps protect the kidneys and liver from extra workload.</p>
-          </div>
-        </section>
-
-        <section id="hydration" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Ensure Sufficient Water & Moisture</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 text-slate-700 space-y-4">
-            <p>Hydration is very important for a dog with kidney stress. Kidneys regulate fluid balance and, when they're not functioning optimally, dogs can become easily dehydrated. To support kidney function, provide plenty of fresh water at all times and consider feeding a high-moisture diet. Wet or canned foods are ideal for kidney patients because of their higher water content. If you do feed any kibble, you can soak it in water or low-sodium broth to increase moisture intake. Good hydration helps the kidneys flush out toxins and can also support the liver's metabolic processes. (An added bonus: wet, soft food tends to be easier on a sensitive stomach.) Always double-check that any broth or fluid added is low in sodium and contains no harmful ingredients like onions.</p>
-          </div>
-        </section>
-
-        <section id="omega3" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Omega-3 Fatty Acids (Fish Oil)</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 text-slate-700 space-y-4">
-            <p>Supplementing with omega-3 fatty acids (EPA/DHA from fish oil) is often recommended for both kidney and liver support. These healthy fats have anti-inflammatory properties that can protect organ function. Clinical evidence suggests omega-3s can improve kidney function and reduce inflammation in the kidneys. They may also benefit the liver by reducing inflammatory changes. Many prescription kidney/liver diets are fortified with fish oil, or you can add a vet-approved fish oil supplement. Omega-3s can also provide extra calories in a safe way for your dog (as they are fat calories, but generally well-tolerated in moderate amounts and beneficial, unlike saturated fats). Always use a vet-recommended dose to avoid excess fat; typically a few hundred milligrams of EPA/DHA per day for a medium-sized dog, but follow your vet's guidance.</p>
-          </div>
-        </section>
-
-        <section id="antioxidants" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Antioxidants and B-Vitamins</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 text-slate-700 space-y-4">
-            <p>Dogs with chronic kidney or liver stress may benefit from extra antioxidants (like vitamin E, vitamin C) and B-vitamins. Antioxidants help neutralize free radicals and may prevent further cell damage in the kidneys and liver. Many therapeutic diets include boosted levels of vitamins E and C for this reason. B-vitamins (like B12, B6, folate) are water-soluble and often added to kidney diets because kidney patients urinate more and lose B-vitamins, and liver patients may have impaired vitamin storage. These vitamins support metabolism and appetite. You generally don't need to add these separately if you're feeding a balanced prescription diet, but it's good to know they play a role. If formulating a homemade diet, a pet-specific vitamin/mineral supplement should be included to meet these needs (per veterinary nutritionist instructions).</p>
-            <p>Liver-specific supplements like SAM-e (S-adenosylmethionine) or milk thistle (silymarin) are sometimes recommended to support liver cell repair and detoxification. These can help reduce liver enzyme levels in some cases, but use them only under veterinary supervision. (For example, SAM-e is an antioxidant used in liver support supplements such as Denamarin).</p>
-          </div>
-        </section>
-
-        <section id="fiber-biotics" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Fermentable Fiber & Gut Support ("Biotics")</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 text-slate-700 space-y-4">
-            <p>You mentioned hearing about "biotics" – likely referring to probiotics and prebiotics. Indeed, fermentable fiber (a type of prebiotic) is often added to kidney diets to help "bind" or eliminate waste products through the gut. Fiber can encourage certain bacteria in the colon to consume nitrogenous wastes and produce feces, which means the body can expel some toxins via the stool instead of through the kidneys. This process, sometimes called "enteric dialysis," basically allows a dog to safely eat a bit more protein than they otherwise could by offloading some waste through the GI tract.</p>
-            <p>Probiotics (beneficial bacteria) might also help with this process and generally support digestive health, especially important for a dog with a sensitive stomach. There are veterinary probiotic supplements marketed for kidney support (e.g. formulations containing Azotobacter or Bacillus species) – ask your vet if one might be appropriate. At minimum, a high-fiber, easily digestible diet will support gut health and nutrient absorption. If your dog tolerates them, fiber-rich veggies (like pumpkin or green beans) can be small additions that provide soluble fiber and vitamins. Just introduce fiber gradually to avoid diarrhea.</p>
-          </div>
-        </section>
-
-        <section id="toxins" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Avoid Toxins and Hazardous Ingredients</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 text-slate-700 space-y-4">
-            <p>With liver and kidney stress, you want to minimize any extra work for these organs. Avoid raw diets or foods that could carry bacterial contamination – your dog's liver may not clear bacteria/toxins as efficiently, and without a spleen (an important immune organ), infections are riskier. Cook all meats thoroughly and practice good food hygiene. Also eliminate any foods known to be toxic to dogs (even small amounts), such as onions, garlic, grapes/raisins, chocolate, etc., as these can specifically damage the liver or kidneys.</p>
-            <p>Steer clear of high-copper foods like liver, shellfish, or mushrooms, since excess copper can accumulate in a stressed liver and cause further damage. Most commercial diets formulated for liver conditions are already low in copper, but if you cook at home, be mindful to exclude high-copper ingredients. Finally, avoid unnecessary additives or supplements that aren't vet-recommended – for example, no salt or flavor enhancers, and caution with herbals. Simplicity and purity of ingredients will help both the liver and kidneys.</p>
-          </div>
-        </section>
-
-        <section id="feeding-strategy" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Feeding Strategy – Small, Frequent Meals</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 space-y-4 text-slate-700">
-            <p>Because of your dog's sensitive digestion and altered bile flow, feeding smaller meals more frequently throughout the day is often beneficial. Small, frequent feedings (for example, 3–6 mini meals instead of 1–2 large meals) help improve nutrient absorption and prevent overwhelming the digestive system. For liver conditions, frequent meals also help prevent blood sugar crashes and reduce the load of toxins from any one meal. Post-gallbladder surgery, dividing the daily food into many small portions is actually ideal (some vet nutritionists suggest 6–8 small meals per day). While you may not manage eight feedings, aiming for at least 3–4 meals per day can make a big difference. This approach smooths out digestion, aids the pancreas and liver in processing nutrients, and can reduce gastrointestinal symptoms (like post-meal diarrhea or reflux). It's also helpful for senior dogs who might not eat a huge meal at once. Make each meal nutrient-dense (as per the guidelines above) so that even if portion sizes are small, your dog still gets the needed calories and nutrients by day's end.</p>
-          </div>
-        </section>
-
-        <section id="palatability" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Palatability and Maintaining Weight</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 space-y-4 text-slate-700">
-            <p>Dogs with kidney or liver ailments sometimes have reduced appetite or nausea. The best diet is one your dog will actually eat consistently. All the nutritional optimizations won't help if your pup refuses the food. Prescription renal/liver diets try to be palatable, but if your dog is picky, you might need to get creative. Warming the food to enhance aroma, adding a small spoonful of something tasty (ask your vet – e.g. a bit of cooked egg white or a splash of low-sodium broth) can entice eating without greatly unbalancing the diet. Monitor your dog's body weight and muscle condition regularly – unintended weight loss is common with kidney/liver disease and can be dangerous. If you notice poor appetite or weight loss, inform your veterinarian promptly. They may prescribe an appetite stimulant or suggest diet adjustments. Never force-starve a dog by over-restricting protein; maintaining adequate nutrition is the top priority. It's a balancing act between restricting certain nutrients and ensuring the dog gets enough calories and protein to stay healthy.</p>
-          </div>
-        </section>
-
-        <section id="food-options" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Recommended Food Options and Diet Plans</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 space-y-4 text-slate-700">
-            <p>Choosing the right type of food will likely mean opting for a veterinary therapeutic diet rather than an ordinary off-the-shelf dog food. Prescription diets formulated for kidney or liver support have the optimal balance of nutrients discussed above (low phosphorus, adjusted protein, limited sodium, etc.) and are tested for long-term nutritional completeness. In fact, studies show that dogs with kidney disease live significantly longer when fed a renal prescription diet compared to a normal maintenance diet. These diets can dramatically improve quality of life and even double survival time in some cases.</p>
-          </div>
-        </section>
-
-        <section id="kidney-diets" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">1. Veterinary "Kidney Support" Diets</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 space-y-4 text-slate-700">
-            <p>Brands like Hill's Prescription Diet k/d, Purina Pro Plan NF (Kidney Function), Royal Canin Renal Support, and others are specifically made for chronic kidney disease. They contain low phosphorus, controlled protein, low sodium, and added fish oil and antioxidants. They are also formulated to be non-acidifying (helping counteract metabolic acidosis that can occur in kidney/liver disease). These kidney diets are often a great starting point since your dog has elevated kidney values. However, note that some renal diets can be a bit higher in fat (to provide calories without protein) – you'll want to select one with moderate or low fat content given your dog's history. Consult your vet on which kidney diet formula has an appropriate fat level; some companies offer multiple versions (for instance, Royal Canin's renal diet comes in different "flavor" profiles, and other brands have both dry and canned options). Canned kidney diets are generally preferred for the moisture and digestibility.</p>
-          </div>
-        </section>
-
-        <section id="liver-diets" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">2. Veterinary "Liver Support" Diets</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 space-y-4 text-slate-700">
-            <p>There are also prescription diets for liver disease, such as Hill's l/d (Liver Care) and Royal Canin Hepatic. These are formulated to be low in copper (to prevent copper buildup in the liver) and use high-quality protein sources in moderate amounts. Liver diets typically avoid ingredients like beef or fish that are high in purines or copper, relying instead on poultry, soy, or dairy protein. They also contain extra antioxidants (vitamin E, C, zinc, etc.) to support liver function. The fat content in liver diets is usually moderate; for example, Royal Canin Hepatic is relatively low fat and highly digestible. If your dog's liver values are significantly high or there's concern about copper hepatitis, a hepatic diet might be recommended. In your dog's case, since both kidney and liver are considerations, your veterinarian will decide which issue is primary. Sometimes liver diets have slightly higher protein than ideal for a kidney patient, and kidney diets might have slightly more copper or protein than ideal for a liver patient – so there's a necessary compromise based on which organ needs more support. It's not uncommon for vets to prioritize kidney support if kidney disease is more advanced, because the renal diets still provide many liver benefits (low protein, etc.), or vice versa.</p>
-          </div>
-        </section>
-
-        <section id="combo-diets" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">3. Combination or Customized Diets</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 space-y-4 text-slate-700">
-            <p>The pet food industry has recognized that some dogs have multiple conditions, and there are "multi-function" veterinary diets available. For example, Royal Canin makes a multi-function formula that supports both renal + hepatic needs in one diet. These specialty foods are prescription-only and can be a good solution when a dog has chronic issues with multiple organs. If a commercial solution isn't suitable or palatable to your dog, another route is a homemade diet formulated by a veterinary nutritionist. A board-certified veterinary nutritionist can craft a balanced recipe tailored to your dog's exact needs (e.g. specific protein sources your dog likes, precise phosphorus level, added fish oil, etc.). This can be especially useful for dogs who won't eat prescription kibble or canned food. Do not rely on generic online recipes for kidney or liver diets – studies have found that most internet or book recipes for these conditions are nutritionally unbalanced. Instead, ask your vet for a referral to a nutritionist or use a service like BalanceIt or JustFoodForDogs, which can create a custom low-protein, low-phosphorus, low-fat recipe. If you go the home-cooked route, you'll likely be adding specific supplements (calcium for phosphorus binding, a multivitamin mix, etc.) to ensure completeness. Homemade diets require commitment, but some dogs do thrive on fresh food when they have food sensitivities – just make sure it's done with professional guidance.</p>
-          </div>
-        </section>
-
-        <section id="treats" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">4. Treats and Extras</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 space-y-4 text-slate-700">
-            <p>Even on a restricted diet, you can give appropriate treats, but they must fit the guidelines. Safe options include plain cooked egg whites (high protein quality, phosphorus-poor), bits of lean turkey or chicken meat (unseasoned, no skin), or treats made from the same prescription diet (many companies make renal diet-compatible dog treats). You can also offer low-fat cottage cheese or boiled rice/pasta as treats if your dog enjoys them – these are low in phosphorus and fat. Avoid typical store-bought treats or any high-salt, high-protein snacks (like jerky, cheese, bacon, etc.). Always account for treats as part of the daily intake; too many can unbalance an otherwise strict diet. If your dog likes fruits or veggies, good choices are apple slices (no seeds), blueberries, cooked carrots, green beans, or pumpkin – these are low-calorie, low-sodium and provide fiber and antioxidants. Just avoid high-potassium produce (like bananas) in excess, as some kidney patients need controlled potassium (your vet can advise if that's a concern based on bloodwork).</p>
-          </div>
-        </section>
-
-        <section id="work-with-vet" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">Working With Your Veterinarian</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 space-y-4 text-slate-700">
-            <p>Every dog is unique, especially a senior with multiple organ considerations, so it's vital to work closely with your veterinarian when planning his diet. Regular monitoring of kidney and liver values will guide adjustments in the diet. For instance, if kidney blood values (BUN, creatinine, phosphorus) remain high, the vet may tighten the phosphorus restriction further or consider adding a phosphate binder medication to trap phosphorus from food. If liver enzymes are not improving, the vet might focus on additions like SAM-e or adjust protein sources. Never change to a new diet abruptly – transition over 5–7 days by gradually mixing the new food with the old to avoid GI upset. It's understandable to find conflicting advice online; nutrition can be complex. Focus on proven veterinary guidance rather than anecdotal promotions. For example, claims like "no chicken" or "special herbal tonic cures kidneys" are not backed by evidence for most dogs. The core principles outlined above (controlled phosphorus, protein, fat, etc.) are the medically relevant factors confirmed by research. When in doubt, ask your vet to explain why they recommend a certain diet. They may prioritize one aspect over another based on your dog's specific test results. For example, if your dog's kidney values are only mildly elevated but liver enzymes are very high, the vet might lean towards a liver support diet plus maybe a phosphate binder for safety – or vice versa.</p>
-            <p>Be cautious of "miracle" supplements or heavily marketed diets that aren't vet-approved. There is no one ingredient that will magically fix kidney or liver issues—what helps is a properly balanced overall diet. Supplements like probiotics, omega-3, or milk thistle can be helpful, but only as part of a comprehensive plan and with veterinary approval (to ensure they don't interfere with any medications or specific needs). Finally, keep an eye on your dog's overall well-being on the new diet. Improvements to look for include: more stable hydration (less excessive thirst or urination), improved energy or alertness, reduced vomiting or diarrhea episodes, and maintenance of a good body condition. It may take a few weeks for a dietary change to reflect in bloodwork improvements, so patience is key. If your dog refuses the prescribed diet no matter what, let your vet know – sometimes palatability issues can be addressed by trying a different brand or form (there are several kidney diet formulations, for example). Never starve the dog into eating a specific food; the vet would rather have you feed an alternate renal diet or a temporary home-cooked diet than let the dog not eat at all, because malnutrition will worsen both kidney and liver conditions.</p>
-            <p>In summary, an ideal diet for your senior dog with kidney and liver stress is one that is low in phosphorus, low-to-moderate in high-quality protein, low in fat, and low in sodium, with plenty of water content and beneficial supplements like omega-3 fatty acids. It should be easily digestible and fed in small frequent meals to accommodate his sensitive GI tract. Prescription veterinary diets are often the best and safest way to meet these requirements. By adhering to these guidelines and adjusting as your dog's condition evolves, you'll be giving him the best chance at maintaining a good quality of life and supporting his kidney and liver function as much as possible. Always involve your veterinarian in these decisions – with their expertise and the proper diet, many dogs with kidney/liver issues can live comfortably for years after their diagnosis.</p>
-          </div>
-        </section>
-
-        <section id="references" class="anchor-offset bg-white rounded-xl shadow p-6 sm:p-8 mb-6">
-          <button class="accordion w-full flex items-center justify-between text-left">
-            <span class="text-xl font-semibold">References</span>
-            <svg class="chev w-5 h-5 text-slate-500 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="panel mt-4 space-y-4 text-slate-700">
-            <p>High-quality veterinary sources have been used in compiling these recommendations, including the Merck Veterinary Manual, PetMD (vet-authored nutrition articles), and veterinary hospital/nutrition specialist guidelines. Key points are supported by studies showing the benefits of renal/hepatic diets on survival and organ function.</p>
-          </div>
-        </section>
       </main>
     </div>
   </div>
 
-  <footer class="text-center py-8 text-sm text-slate-500">© 2024 Carmelo's Health Dashboard</footer>
+  <div id="main-footer"></div>
 
-  <script>
-    // Mobile menu
-    document.addEventListener('DOMContentLoaded', function() {
-      const mobileMenuButton = document.querySelector('.mobile-menu-button');
-      const mobileMenu = document.querySelector('.mobile-menu');
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-      }
-    });
-
-    // Accordion behavior
-    document.querySelectorAll('.accordion').forEach(btn => {
-      const section = btn.parentElement;
-      const panel = section.querySelector('.panel');
-      const chev = section.querySelector('.chev');
-      // Start expanded
-      panel.style.display = 'block';
-      btn.addEventListener('click', () => {
-        const isOpen = panel.style.display !== 'none';
-        panel.style.display = isOpen ? 'none' : 'block';
-        chev.classList.toggle('rotate-180', !isOpen);
-      });
-    });
-
-    // Build left-hand ToC from sections
-    const toc = document.getElementById('toc');
-    const sections = document.querySelectorAll('main section');
-    sections.forEach(sec => {
-      const id = sec.id;
-      const heading = sec.querySelector('button span')?.textContent || id;
-      const a = document.createElement('a');
-      a.href = `#${id}`;
-      a.textContent = heading;
-      a.className = 'block px-3 py-2 rounded-md text-sm text-slate-700 hover:bg-slate-100';
-      toc.appendChild(a);
-    });
-
-    // Active link highlighting on scroll
-    const links = Array.from(toc.querySelectorAll('a'));
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          links.forEach(l => l.classList.remove('bg-health-light','text-health-dark'));
-          const active = links.find(l => l.getAttribute('href') === `#${entry.target.id}`);
-          if (active) active.classList.add('bg-health-light','text-health-dark');
-        }
-      });
-    }, { rootMargin: '-30% 0px -60% 0px' });
-
-    sections.forEach(sec => observer.observe(sec));
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
